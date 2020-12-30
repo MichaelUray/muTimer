@@ -38,5 +38,15 @@ void loop()
 }
 ```
 
+There are also calls available to use either the on or off timer
+```cpp
+  output = myTimer1.timerOn(input, 2000); // on delay 2000 ms
+```
+
+```cpp
+  output = myTimer1.timerOff(input, 1000); // off delay 1000 ms
+```
+
+
 Written by Michael Uray / Austria\
 MIT license, check LICENSE file for more details
