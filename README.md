@@ -10,7 +10,9 @@ MIT license, check LICENSE file for more details
 
 It is pretty easy to use library and it consumes not much RAM.
 
-## Timer Functions ##
+# Functions
+
+### Timer Functions ###
 
 **on and off** timer
 ```cpp
@@ -30,7 +32,7 @@ It is pretty easy to use library and it consumes not much RAM.
   output = myTimer1.timerOff(input, 1000);
 ```
 
-## Timer Control Functions ##
+### Timer Control ###
 
 ```cpp
     // restarts the current running time interval from 0
@@ -42,7 +44,7 @@ It is pretty easy to use library and it consumes not much RAM.
     void timerElapse(void);
 ```
 
-## Timer Information Functions ##
+### Timer Information ###
 
 ```cpp
     // returns if timer is still running
