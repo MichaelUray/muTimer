@@ -59,7 +59,7 @@ void muTimer::timerReset(void)
         _startTime = millis();
 }
 
-// ends the current running time intervall
+// ends the current running timer interval
 void muTimer::timerElapse(void)
 {
     if (timerIsRunning())

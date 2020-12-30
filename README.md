@@ -14,28 +14,35 @@ It is pretty easy to use library and it consumes not much RAM.
 
 ### Timer Functions ###
 
-**on and off** timer
+**on and off** delay\
+timerOnOff()\
+Starts the timer if the bool 'input' bit gets set and it returns true when the 'on' timer given by 'delayOnTime' in msec is elapsed.\
+If the output is already set and you clear the 'input' bit, then it starts the 'off' timer and it returns false when the time given by 'delayOfTime' in msec is elapsed.
 ```cpp
   bool timerOnOff(bool input, uint32_t delayOnTime, uint32_t delayOffTime);
   
   // example: on delay 2000 ms, off delay 1000 ms
-  output = myTimer1.timerOnOff(input, 2000, 1000);
+  output1 = myTimer1.timerOnOff(input1, 2000, 1000);
 ```
 
-**on** timer only
+**on** delay only
+timerOn()\
+Same as timerOnOff(), but on delay only.
 ```cpp
   bool timerOn(bool input, uint32_t delayOnTime);
   
   // example: on delay 2000 ms
-  output = myTimer1.timerOn(input, 2000);
+  output1 = myTimer1.timerOn(input1, 2000);
 ```
 
-**off** timer only
+**off** delay only
+timerOff()\
+Same as timerOnOff(), but off delay only.
 ```cpp
   bool timerOff(bool input, uint32_t delayOffTime);
 
   // example: off delay 1000 ms
-  output = myTimer1.timerOff(input, 1000);
+  output1 = myTimer1.timerOff(input1, 1000);
 ```
 
 ### Timer Control ###
@@ -73,8 +80,8 @@ muTimer myTimer1 = muTimer();
 #define PIN_BUTTON  3
 #define PIN_LED 9
 
-bool input;
-bool output;
+bool input1;
+bool output1;
 
 void setup()
 {
@@ -88,13 +95,13 @@ void setup()
 void loop()
 {
   // read input
-  input = digitalRead(PIN_BUTTON);
+  input1 = digitalRead(PIN_BUTTON);
 
   // on delay 2000 ms, off delay 1000 ms
-  output = myTimer1.timerOnOff(input, 2000, 1000);
+  output1 = myTimer1.timerOnOff(input1, 2000, 1000);
 
   // write output
-  digitalWrite(PIN_LED, output);
+  digitalWrite(PIN_LED, output1);
 }
 ```
 

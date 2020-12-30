@@ -28,7 +28,7 @@ public:
     // restarts the current running time interval from 0
     void timerReset(void);
 
-    // ends the current running time intervall
+    // ends the current running timer interval
     void timerElapse(void);
 
     // -----------------
