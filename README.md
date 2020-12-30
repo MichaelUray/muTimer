@@ -1,6 +1,6 @@
 # muTimer Library #
 
-This library does not use any hardware timers, it just uses the Arduino millis() function to store the start time.
+This library does not use any hardware timers, it just uses the Arduino millis() function to store the start time.\
 You can find the source there: https://github.com/MichaelUray/muTimer/
 
 ## About this Library ##
