@@ -1,0 +1,15 @@
+#######################################
+# Datatypes (KEYWORD1)
+#######################################
+
+muTimer	KEYWORD1
+
+
+#######################################
+# Methods and Functions (KEYWORD2)
+#######################################
+
+timerOnOff	KEYWORD2
+timerOn	KEYWORD2
+timerOff	KEYWORD2
+getTimeElapsed	KEYWORD2
