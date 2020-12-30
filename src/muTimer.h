@@ -35,7 +35,7 @@ public:
     // Timer Information
     // -----------------
 
-    // returns if timer is still running
+    // returns true if timer is still running
     bool timerIsRunning(void);
 
     // returns the time elapsed since start

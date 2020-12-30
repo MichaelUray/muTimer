@@ -70,7 +70,7 @@ void muTimer::timerElapse(void)
 // Timer Information
 // -----------------
 
-// returns if timer is still running
+// returns true if timer is still running
 bool muTimer::timerIsRunning(void)
 {
     return _output != _input_M;

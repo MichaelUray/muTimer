@@ -16,19 +16,25 @@ It is pretty easy to use library and it consumes not much RAM.
 
 **on and off** timer
 ```cpp
-  // on delay 2000 ms, off delay 1000 ms
+  bool timerOnOff(bool input, uint32_t delayOnTime, uint32_t delayOffTime);
+  
+  // example: on delay 2000 ms, off delay 1000 ms
   output = myTimer1.timerOnOff(input, 2000, 1000);
 ```
 
 **on** timer only
 ```cpp
-  // on delay 2000 ms
+  bool timerOn(bool input, uint32_t delayOnTime);
+  
+  // example: on delay 2000 ms
   output = myTimer1.timerOn(input, 2000);
 ```
 
 **off** timer only
 ```cpp
-  // off delay 1000 ms
+  bool timerOff(bool input, uint32_t delayOffTime);
+
+  // example: off delay 1000 ms
   output = myTimer1.timerOff(input, 1000);
 ```
 
@@ -47,7 +53,7 @@ It is pretty easy to use library and it consumes not much RAM.
 ### Timer Information ###
 
 ```cpp
-    // returns if timer is still running
+    // returns true if timer is still running
     bool timerIsRunning(void);
 ```
 
