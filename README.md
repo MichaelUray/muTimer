@@ -2,22 +2,21 @@
 
 This library provides a non-blocking timer/delay functionality for Arduinos in msec.
 
-It does not use any hardware timers, it uses the Arduino millis() function to store the start time.\
-It might be useable for other platforms as well, if you replace the millis() function with any other function which returns a msec counter as unsigned 32-bit value.\
+It does not use any hardware timers, it uses the Arduino millis() function to store the start time. It might be useable for other platforms as well, if you replace the millis() function with any other function which returns a msec counter as unsigned 32-bit value.\
 You can find the source there: https://github.com/MichaelUray/muTimer/ \
 MIT license, check LICENSE file for more details.
 
 ### About this Library ###
 
-It is pretty easy to use library and it consumes not much RAM.
+It is a pretty easy to use library and it consumes not much RAM.
 
 # Functions
 
 ### Timer Functions ###
 **timerOnOff()**\
-On and off delay\
-Starts the timer if the bool 'input' bit gets set and it returns true when the 'on' delay given by 'delayOnTime' in msec is elapsed.\
-If the output is already set and you clear the 'input' bit, then it starts the 'off' delay and it returns false when the time given by 'delayOfTime' in msec is elapsed.
+'On' and 'off' delay.\
+Starts the timer if the bool 'input' gets set and it returns true when the 'on' delay given by 'delayOnTime' in msec is elapsed.\
+If the output is already set and you clear the bool 'input', then it starts the 'off' delay and it returns false when the time given by 'delayOfTime' in msec is elapsed.
 ```cpp
   bool timerOnOff(bool input, uint32_t delayOnTime, uint32_t delayOffTime);
   
@@ -26,8 +25,8 @@ If the output is already set and you clear the 'input' bit, then it starts the '
 ```
 
 **timerOn()**\
-On delay only\
-Same as timerOnOff(), but on delay only.
+'On' delay only.\
+Same as timerOnOff(), but 'on' delay only.
 ```cpp
   bool timerOn(bool input, uint32_t delayOnTime);
   
@@ -36,8 +35,8 @@ Same as timerOnOff(), but on delay only.
 ```
 
 **timerOff()**\
-Off delay only
-Same as timerOnOff(), but off delay only.
+'Off' delay only.\
+Same as timerOnOff(), but 'off' delay only.
 ```cpp
   bool timerOff(bool input, uint32_t delayOffTime);
 
