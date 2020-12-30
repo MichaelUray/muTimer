@@ -1,7 +1,7 @@
 # muTimer Library #
 
-This library uses the builtin Arduino mills function.
-The source can be found here: https://github.com/MichaelUray/muTimer/
+This library uses the builtin Arduino mills function.\
+The source can be found there: https://github.com/MichaelUray/muTimer/
 
 ## About this Library ##
 
@@ -38,5 +38,5 @@ void loop()
 }
 ```
 
-Written by Michael Uray / Austria
+Written by Michael Uray / Austria\
 MIT license, check LICENSE file for more details
