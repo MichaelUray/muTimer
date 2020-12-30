@@ -1,11 +1,60 @@
 # muTimer Library #
 
-This library does not use any hardware timers, it just uses the Arduino millis() function to store the start time.\
-You can find the source there: https://github.com/MichaelUray/muTimer/
+This library provides a non-blocking timer/delay functionality for Arduinos.
 
-## About this Library ##
+It does not use any hardware timers, it uses the Arduino millis() function to store the start time.\
+You can find the source there: https://github.com/MichaelUray/muTimer/ \
+MIT license, check LICENSE file for more details
 
-It is pretty easy to use and it consumes just a very little bit of RAM.
+### About this Library ###
+
+It is pretty easy to use library and it consumes not much RAM.
+
+## Timer Functions ##
+
+**on and off** timer
+```cpp
+  // on delay 2000 ms, off delay 1000 ms
+  output = myTimer1.timerOnOff(input, 2000, 1000);
+```
+
+**on** timer only
+```cpp
+  // on delay 2000 ms
+  output = myTimer1.timerOn(input, 2000);
+```
+
+**off** timer only
+```cpp
+  // off delay 1000 ms
+  output = myTimer1.timerOff(input, 1000);
+```
+
+## Timer Control Functions ##
+
+```cpp
+    // restarts the current running time interval from 0
+    void timerReset(void);
+```
+
+```cpp
+    // ends the current running time intervall
+    void timerElapse(void);
+```
+
+## Timer Information Functions ##
+
+```cpp
+    // returns if timer is still running
+    bool timerIsRunning(void);
+```
+
+```cpp
+    // returns the time elapsed since start
+    uint32_t getTimeElapsed(void);
+```
+
+## Example ##
 
 ```cpp
 #include <muTimer.h>
@@ -21,32 +70,23 @@ bool output;
 
 void setup()
 {
-
   // configure input pin switch with internal pull-up resistor
   pinMode(PIN_BUTTON, INPUT_PULLUP);
 
   // configure output pin LED
   pinMode(PIN_LED, OUTPUT);
-
 }
 
 void loop()
 {
-  input = digitalRead(PIN_BUTTON); // read input
-  output = myTimer1.timerOnOff(input, 2000, 1000); // on delay 2000 ms, off delay 1000 ms
-  digitalWrite(PIN_LED, output); // write output
+  // read input
+  input = digitalRead(PIN_BUTTON);
+
+  // on delay 2000 ms, off delay 1000 ms
+  output = myTimer1.timerOnOff(input, 2000, 1000);
+
+  // write output
+  digitalWrite(PIN_LED, output);
 }
 ```
 
-There are also calls available to use either the on or off timer
-```cpp
-  output = myTimer1.timerOn(input, 2000); // on delay 2000 ms
-```
-
-```cpp
-  output = myTimer1.timerOff(input, 1000); // off delay 1000 ms
-```
-
-
-Written by Michael Uray / Austria\
-MIT license, check LICENSE file for more details

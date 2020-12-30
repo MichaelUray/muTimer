@@ -10,7 +10,7 @@ void setup()
 
 void loop()
 {
-  // 5000ms on delay
+  // 5000 ms on delay
   if (myTimer1.timerOn(1, 5000))
   {
     Serial.println("Timer finished.");
@@ -19,5 +19,4 @@ void loop()
   // library is non-blocking
   // other code can get executed there in the meanwhile
   // ...
-  
 }

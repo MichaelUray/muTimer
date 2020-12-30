@@ -8,19 +8,37 @@ public:
     // constructor
     muTimer(void);
 
+    // ------
+    // Timers
+    // ------
+
     // timer on and off
     bool timerOnOff(bool input, uint32_t delayOnTime, uint32_t delayOffTime);
 
-    bool timerOn(bool input, uint32_t delayOnTime)
-    {
-        return timerOnOff(input, delayOnTime, 0);
-    }
+    // timer on
+    bool timerOn(bool input, uint32_t delayOnTime);
 
-    bool timerOff(bool input, uint32_t delayOffTime)
-    {
-        return timerOnOff(input, 0, delayOffTime);
-    }
+    // timer off
+    bool timerOff(bool input, uint32_t delayOffTime);
 
+    // -------------
+    // Timer Control
+    // -------------
+
+    // restarts the current running time interval from 0
+    void timerReset(void);
+
+    // ends the current running time intervall
+    void timerElapse(void);
+
+    // -----------------
+    // Timer Information
+    // -----------------
+
+    // returns if timer is still running
+    bool timerIsRunning(void);
+
+    // returns the time elapsed since start
     uint32_t getTimeElapsed(void);
 
 private:
