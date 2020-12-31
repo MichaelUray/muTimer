@@ -48,18 +48,71 @@ bool muTimer::timerOff(bool input, uint32_t delayOffTime)
     return timerOnOff(input, 0, delayOffTime);
 }
 
+// timer on and off trigger - generates a pulse once if time is elapsed
+bool muTimer::timerOnOffTrigger(bool input, uint32_t delayOnTime, uint32_t delayOffTime)
+{
+    // has input changed?
+    if (_input_M != input)
+    {
+        _input_M = input;
+        _startTime = millis();
+    }
+
+    // timer on
+    if (!_output && input)
+    {
+        if (millis() - _startTime >= delayOnTime)
+        {
+            _output = 1;
+            return 1;
+        }
+    }
+
+    // timer off
+    if (_output && !input)
+    {
+        if (millis() - _startTime >= delayOffTime)
+        {
+            _output = 0;
+            return 1;
+        }
+    }
+
+    return 0;
+}
+
+// timer on trigger - generates a pulse once if time is elapsed
+bool muTimer::timerOnTrigger(bool input, uint32_t delayOnTime)
+{
+    return timerOnOffTrigger(input, delayOnTime, 0);
+}
+
+// timer off trigger - generates a pulse once if time is elapsed
+bool muTimer::timerOffTrigger(bool input, uint32_t delayOffTime)
+{
+    return timerOnOffTrigger(input, 0, delayOffTime);
+}
+
 // -------------
 // Timer Control
 // -------------
 
-// restarts the current running time interval from 0 (only if timer is still running)
+// restarts the time from 0 and sets output != input at next timer function call
 void muTimer::timerReset(void)
 {
-    if (timerIsRunning())
-        _startTime = millis();
+    _startTime = millis();
+
+    if (_input_M)
+    {
+        _output = 0;
+    }
+    else
+    {
+        _output = 1;
+    }
 }
 
-// ends the current running timer interval
+// ends the current running timer interval and sets output == input at next timer function call
 void muTimer::timerElapse(void)
 {
     if (timerIsRunning())

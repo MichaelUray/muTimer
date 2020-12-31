@@ -12,4 +12,10 @@ muTimer	KEYWORD1
 timerOnOff	KEYWORD2
 timerOn	KEYWORD2
 timerOff	KEYWORD2
+timerOnOffTrigger	KEYWORD2
+timerOnTrigger	KEYWORD2
+timerOffTrigger	KEYWORD2
+timerReset	KEYWORD2
+timerElapse	KEYWORD2
+timerIsRunning	KEYWORD2
 getTimeElapsed	KEYWORD2

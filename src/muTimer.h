@@ -21,14 +21,23 @@ public:
     // timer off
     bool timerOff(bool input, uint32_t delayOffTime);
 
+    // timer on and off trigger - generates a pulse once if time is elapsed
+    bool timerOnOffTrigger(bool input, uint32_t delayOnTime, uint32_t delayOffTime);
+
+    // timer on trigger - generates a pulse once if time is elapsed
+    bool timerOnTrigger(bool input, uint32_t delayOnTime);
+
+    // timer off trigger - generates a pulse once if time is elapsed
+    bool timerOffTrigger(bool input, uint32_t delayOffTime);
+
     // -------------
     // Timer Control
     // -------------
 
-    // restarts the current running time interval from 0
+    // restarts the time from 0 and sets output != input at next timer function call
     void timerReset(void);
 
-    // ends the current running timer interval
+    // ends the current running timer interval and sets output == input at next timer function call
     void timerElapse(void);
 
     // -----------------
