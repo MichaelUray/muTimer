@@ -14,9 +14,9 @@ The easiest way to create a delay in a program is probably the function delay(),
 void loop()
 {
   LED1 = 1;
-  delay(100)
+  delay(100);
   LED1 = 0;
-  delay(500)
+  delay(500);
 }
 ```
 While the LED is on in this example and the delay(1000) is waiting for its time to elapse, nothing else can happen (except of interrupts).\
