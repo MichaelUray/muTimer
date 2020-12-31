@@ -43,101 +43,104 @@ If the output is already set and you clear the 'input', then it starts the 'off'
 ```cpp
   bool timerOnOff(bool input, uint32_t delayOnTime, uint32_t delayOffTime);
   
-  // example: on delay 2000 ms, off delay 1000 ms
-  output1 = myTimer1.timerOnOff(input1, 2000, 1000);
+  // example: on delay 4000ms, off delay 2000ms
+  output1 = myTimer1.timerOnOff(input1, 4000, 2000);
 
-  // input : _______------------_________
-  // output: ___________----------_______
+  // in : _______------------______---______________------------_------
+  // out: ___________----------_________________________---------------
 ```
 
 **timerOn()**\
 On delay only.\
 Same as timerOnOff(), but on delay only.
 ```cpp
-  bool timerOn(bool input, uint32_t delayOnTime);
+bool timerOn(bool input, uint32_t delayOnTime);
   
-  // example: on delay 2000 ms
-  output1 = myTimer1.timerOn(input1, 2000);
-  // input : _______------------_________
-  // output: ___________--------_________
+// example: on delay 4000ms
+output1 = myTimer1.timerOn(input1, 4000);
+
+// in : _______------------____________---______
+// out: ___________--------_____________________
 ```
 
 **timerOff()**\
 Off delay only.\
 Same as timerOnOff(), but off delay only.
 ```cpp
-  bool timerOff(bool input, uint32_t delayOffTime);
+bool timerOff(bool input, uint32_t delayOffTime);
 
-  // example: off delay 1000 ms
-  output1 = myTimer1.timerOff(input1, 1000);
-  // input : _______------------_________
-  // output: _______--------------_______
+// example: off delay 2000ms
+output1 = myTimer1.timerOff(input1, 2000);
+
+// in : _______------------_______
+// out: _______--------------_____
 ```
 
 **timerOnOffTrigger()**\
 On and off delay with output trigger.\
 The output gets just set once if the timer elapses.
 ```cpp
-  bool timerOnOffTrigger(bool input, uint32_t delayOffTime);
+bool timerOnOffTrigger(bool input, uint32_t delayOffTime);
 
-  // example: on delay 2000 ms, off delay 1000 ms
-  if (myTimer1.timerOnOffTrigger(input1, 2000, 1000))
-  { // timer elapsed - gets executed just once
-    if (input1)
-    {
-      Serial.println("Timer on finished: input1 == 1");
-    }
-    else
-    {
-      Serial.println("Timer off finished: input1 == 0");
-    }
+// example: on delay 4000ms, off delay 2000ms
+if (myTimer1.timerOnOffTrigger(input1, 4000, 2000))
+{ // timer elapsed - gets executed just once
+  if (input1)
+  {
+    Serial.println("Timer on finished: input1 == 1");
   }
-  // input : _______------------_________
-  // output: ___________-_________-______
+  else
+  {
+    Serial.println("Timer off finished: input1 == 0");
+  }
+}
 
+// in : _______------------_________
+// out: ___________-_________-______
 ```
-
 **timerOnTrigger()**\
 On delay only with output trigger.\
 The output gets just set once if the timer elapses.
 ```cpp
-  bool timerOnTrigger(bool input, uint32_t delayOffTime);
+bool timerOnTrigger(bool input, uint32_t delayOffTime);
 
-  // example: on delay 2000 ms
-  if (myTimer1.timerOnTrigger(input1, 2000))
-  { // timer elapsed - gets executed just once
-    Serial.println("Timer on finished: input1 == 1");
-  }
-  // input : _______------------_________
-  // output: ___________-________________
+// example: on delay 4000ms
+if (myTimer1.timerOnTrigger(input1, 4000))
+{ // timer elapsed - gets executed just once
+  Serial.println("Timer on finished: input1 == 1");
+}
+
+// in : _______------------__________
+// out: ___________-_________________
 ```
 
 **timerOffTrigger()**\
 Off delay only with output trigger.\
 The output gets just set once if the timer elapses.
 ```cpp
-  bool timerOffTrigger(bool input, uint32_t delayOffTime);
+bool timerOffTrigger(bool input, uint32_t delayOffTime);
 
-  // example: off delay 2000 ms
-  if (myTimer1.timerOffTrigger(input1, 2000))
-  { // timer elapsed - gets executed just once
-    Serial.println("Timer on finished: input1 == 0");
-  }
-  // input : _______------------_________
-  // output: _____________________-______
+// example: off delay 2000ms
+if (myTimer1.timerOffTrigger(input1, 2000))
+{ // timer elapsed - gets executed just once
+  Serial.println("Timer on finished: input1 == 0");
+}
+
+// in : _______------------__________
+// out: _____________________-_______
 ```
 
 ### Timer Control ###
 **timerReset()**\
 Restarts the time from 0 and sets output != input at next timer function call.
 ```cpp
-    void timerReset(void);
+void timerReset(void);
 ```
 
 **timerElapse()**\
 Ends the current running timer interval and sets output == input at next timer function call.
 ```cpp
-    void timerElapse(void);
+void timerElapse(void);
 ```
 
 ### Timer Information ###
@@ -145,12 +148,12 @@ Ends the current running timer interval and sets output == input at next timer f
 **timerIsRunning()**\
 Returns true if timer is still running.
 ```cpp
-    bool timerIsRunning(void);
+bool timerIsRunning(void);
 ```
 **getTimeElapsed()**\
 Returns the elapsed time since the start of the timer.
 ```cpp
-    uint32_t getTimeElapsed(void);
+uint32_t getTimeElapsed(void);
 ```
 
 ## Example ##
