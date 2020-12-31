@@ -20,7 +20,7 @@ bool input1;
 
 void setup()
 {
-  // configure input hardware pin with internal pull-up resistor
+  // configure input hardware pin with internal pull-up resistor, button has to switch against GND
   pinMode(PIN_BUTTON, INPUT_PULLUP);
 
   Serial.begin(9600);

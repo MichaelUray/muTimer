@@ -24,7 +24,7 @@ bool output1;
 
 void setup()
 {
-  // configure input hardware pin with internal pull-up resistor
+  // configure input hardware pin with internal pull-up resistor, button has to switch against GND
   pinMode(PIN_BUTTON, INPUT_PULLUP);
 
   // configure output hardware pin
