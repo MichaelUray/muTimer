@@ -1,5 +1,31 @@
 # muTimer Library #
 
+## Index ##
+- [muTimer Library](#mutimer-library)
+  * [Index](#index)
+  * [About this Library](#about-this-library)
+  * [Introduction](#introduction)
+- [Functions](#functions)
+  * [Timer On/Off](#timer-on-off)
+    + [timerOnOff()](#timeronoff--)
+    + [timerOn()](#timeron--)
+    + [timerOff()](#timeroff--)
+    + [timerOnOffTrigger()](#timeronofftrigger--)
+    + [timerOnTrigger()](#timerontrigger--)
+    + [timerOffTrigger()](#timerofftrigger--)
+  * [Timer Cycle](#timer-cycle)
+    + [timerCycleOnOff()](#timercycleonoff--)
+    + [timerCycleOnOffTrigger()](#timercycleonofftrigger--)
+    + [timerCycleOnOffResetToOff()](#timercycleonoffresettooff--)
+    + [timerCycleOnOffResetToOn()](#timercycleonoffresettoon--)
+  * [Timer Control](#timer-control)
+    + [timerReset()](#timerreset--)
+    + [timerElapse()](#timerelapse--)
+  * [Timer Information](#timer-information)
+    + [timerIsRunning()](#timerisrunning--)
+    + [getTimeElapsed()](#gettimeelapsed--)
+- [Example](#example)
+
 ## About this Library ##
 This library provides a non-blocking timer/delay functionality for Arduinos which consumes not much RAM.
 
@@ -234,7 +260,6 @@ Some application examples for which this library could work for.
 - Create LED flashing with given on/off interval times.
 - Switch a pump on by a floating switch if the switch is true for at least 1 minute and turn the pump off, if the switch gets false for at least 15 seconds.
 
-
 # Functions #
 
 ## Timer On/Off ##
@@ -255,7 +280,8 @@ output1 = myTimer1.timerOnOff(input1, 4000, 2000);
 
 ### timerOn() ###
 On delay only.\
-Same as timerOnOff(), but on delay only.
+Same as timerOnOff(), but on delay only.\
+It works similar to the ton() function from the IEC-Timers which are well known in the PLC programming world.
 ```cpp
 bool timerOn(bool input, uint32_t delayTimeSwitchOn);
   
@@ -268,7 +294,8 @@ output1 = myTimer1.timerOn(input1, 4000);
 
 ### timerOff() ###
 Off delay only.\
-Same as timerOnOff(), but off delay only.
+Same as timerOnOff(), but off delay only.\
+It works similar to the tof() function from the IEC-Timers which are well known in the PLC programming world.
 ```cpp
 bool timerOff(bool input, uint32_t delayTimeSwitchOff);
 
