@@ -29,12 +29,12 @@ void loop()
 {
   // put your main code here, to run repeatedly:
   
-  LED1 = 1;
-  digitalWrite(PIN_LED, LED1);
-  delay(100);
   LED1 = 0;
   digitalWrite(PIN_LED, LED1);
   delay(500);
+  LED1 = 1;
+  digitalWrite(PIN_LED, LED1);
+  delay(100);
 }
 ```
 While the LED is on in this example and the delay(100) or delay(500) is waiting for its time to elapse, nothing else can happen (except of interrupts).\
