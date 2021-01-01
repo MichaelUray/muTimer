@@ -241,10 +241,10 @@ Some application examples for which this library could work for.
 
 ### timerOnOff() ##
 On and off delay.\
-Starts the timer if the bool 'input' gets set and it returns true when the 'on' timer given by 'delayOnTime' in msec is elapsed.\
+Starts the timer if the bool 'input' gets set and it returns true when the 'on' timer given by 'delayTimeSwitchOn' in msec is elapsed.\
 If the output is already set and you clear the 'input', then it starts the 'off' timer and it returns false when the time given by 'delayOfTime' in msec is elapsed.
 ```cpp
-bool timerOnOff(bool input, uint32_t delayOnTime, uint32_t delayOffTime);
+bool timerOnOff(bool input, uint32_t delayTimeSwitchOn, uint32_t delayTimeSwitchOff);
 
 // example: on delay 4000ms, off delay 2000ms
 output1 = myTimer1.timerOnOff(input1, 4000, 2000);
@@ -257,7 +257,7 @@ output1 = myTimer1.timerOnOff(input1, 4000, 2000);
 On delay only.\
 Same as timerOnOff(), but on delay only.
 ```cpp
-bool timerOn(bool input, uint32_t delayOnTime);
+bool timerOn(bool input, uint32_t delayTimeSwitchOn);
   
 // example: on delay 4000ms
 output1 = myTimer1.timerOn(input1, 4000);
@@ -270,7 +270,7 @@ output1 = myTimer1.timerOn(input1, 4000);
 Off delay only.\
 Same as timerOnOff(), but off delay only.
 ```cpp
-bool timerOff(bool input, uint32_t delayOffTime);
+bool timerOff(bool input, uint32_t delayTimeSwitchOff);
 
 // example: off delay 2000ms
 output1 = myTimer1.timerOff(input1, 2000);
@@ -286,7 +286,7 @@ Sets the output to 0 once if the delayOffTime elapsed and if the output of timer
 Sets the output to 1 once if the delayOnTime elapsed and if the output of timerOnOff() would go to 1.\
 Sets the output to 2 if the time between cycles is running.
 ```cpp
-byte timerOnOffTrigger(bool input, uint32_t delayOffTime);
+byte timerOnOffTrigger(bool input, uint32_t delayTimeSwitchOff);
 
 // example: on delay 4000ms, off delay 2000ms
 switch (myTimer1.timerOnOffTrigger(input1, 4000, 2000))
@@ -315,7 +315,7 @@ switch (myTimer1.timerOnOffTrigger(input1, 4000, 2000))
 On delay only with output trigger.\
 The output gets just set once if the timer elapses.
 ```cpp
-bool timerOnTrigger(bool input, uint32_t delayOffTime);
+bool timerOnTrigger(bool input, uint32_t delayTimeSwitchOff);
 
 // example: on delay 4000ms
 if (myTimer1.timerOnTrigger(input1, 4000))
@@ -331,7 +331,7 @@ if (myTimer1.timerOnTrigger(input1, 4000))
 Off delay only with output trigger.\
 The output gets just set once if the timer elapses.
 ```cpp
-bool timerOffTrigger(bool input, uint32_t delayOffTime);
+bool timerOffTrigger(bool input, uint32_t delayTimeSwitchOff);
 
 // example: off delay 2000ms
 if (myTimer1.timerOffTrigger(input1, 2000))

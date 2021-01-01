@@ -10,7 +10,7 @@ muTimer::muTimer(void)
 // ------
 
 // timer on and off
-bool muTimer::timerOnOff(bool input, uint32_t delayOnTime, uint32_t delayOffTime)
+bool muTimer::timerOnOff(bool input, uint32_t delayTimeSwitchOn, uint32_t delayTimeSwitchOff)
 {
     // has input changed?
     if (_input_M != input)
@@ -22,14 +22,14 @@ bool muTimer::timerOnOff(bool input, uint32_t delayOnTime, uint32_t delayOffTime
     // timer on
     if (!_output && input)
     {
-        if (millis() - _startTime >= delayOnTime)
+        if (millis() - _startTime >= delayTimeSwitchOn)
             _output = 1;
     }
 
     // timer off
     if (_output && !input)
     {
-        if (millis() - _startTime >= delayOffTime)
+        if (millis() - _startTime >= delayTimeSwitchOff)
             _output = 0;
     }
 
@@ -37,22 +37,22 @@ bool muTimer::timerOnOff(bool input, uint32_t delayOnTime, uint32_t delayOffTime
 }
 
 // timer on
-bool muTimer::timerOn(bool input, uint32_t delayOnTime)
+bool muTimer::timerOn(bool input, uint32_t delayTimeSwitchOn)
 {
-    return timerOnOff(input, delayOnTime, 0);
+    return timerOnOff(input, delayTimeSwitchOn, 0);
 }
 
 // timer off
-bool muTimer::timerOff(bool input, uint32_t delayOffTime)
+bool muTimer::timerOff(bool input, uint32_t delayTimeSwitchOff)
 {
-    return timerOnOff(input, 0, delayOffTime);
+    return timerOnOff(input, 0, delayTimeSwitchOff);
 }
 
 // timer on and off trigger
-// sets the output to 0 once if the delayOffTime elapsed and if the output of timerOnOff() would go to 0
-// sets the output to 1 once if the delayOnTime elapsed and if the output of timerOnOff() would go to 1
+// sets the output to 0 once if the delayTimeSwitchOff elapsed and if the output of timerOnOff() would go to 0
+// sets the output to 1 once if the delayTimeSwitchOn elapsed and if the output of timerOnOff() would go to 1
 // sets the output to 2 if the time between cycles is running
-byte muTimer::timerOnOffTrigger(bool input, uint32_t delayOnTime, uint32_t delayOffTime)
+byte muTimer::timerOnOffTrigger(bool input, uint32_t delayTimeSwitchOn, uint32_t delayTimeSwitchOff)
 {
     // has input changed?
     if (_input_M != input)
@@ -64,7 +64,7 @@ byte muTimer::timerOnOffTrigger(bool input, uint32_t delayOnTime, uint32_t delay
     // timer on
     if (!_output && input)
     {
-        if (millis() - _startTime >= delayOnTime)
+        if (millis() - _startTime >= delayTimeSwitchOn)
         {
             _output = 1;
             return 1;
@@ -74,7 +74,7 @@ byte muTimer::timerOnOffTrigger(bool input, uint32_t delayOnTime, uint32_t delay
     // timer off
     if (_output && !input)
     {
-        if (millis() - _startTime >= delayOffTime)
+        if (millis() - _startTime >= delayTimeSwitchOff)
         {
             _output = 0;
             return 0;
@@ -85,15 +85,15 @@ byte muTimer::timerOnOffTrigger(bool input, uint32_t delayOnTime, uint32_t delay
 }
 
 // timer on trigger - generates a pulse once if time is elapsed
-bool muTimer::timerOnTrigger(bool input, uint32_t delayOnTime)
+bool muTimer::timerOnTrigger(bool input, uint32_t delayTimeSwitchOn)
 {
-    return timerOnOffTrigger(input, delayOnTime, 0);
+    return timerOnOffTrigger(input, delayTimeSwitchOn, 0);
 }
 
 // timer off trigger - generates a pulse once if time is elapsed
-bool muTimer::timerOffTrigger(bool input, uint32_t delayOffTime)
+bool muTimer::timerOffTrigger(bool input, uint32_t delayTimeSwitchOff)
 {
-    return timerOnOffTrigger(input, 0, delayOffTime);
+    return timerOnOffTrigger(input, 0, delayTimeSwitchOff);
 }
 
 // timer on/off cycle, sets the output between on and off by the given time intervals, could get used to create a flashing LED
