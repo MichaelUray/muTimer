@@ -3,7 +3,7 @@
 ## About this Library ##
 This library provides a non-blocking timer/delay functionality for Arduinos which consumes not much RAM.
 
-Have a look on [timerOnOff()](#timerOnOff()) if you quickly want to understand how it works.
+Have a look on [timerOnOff()](#timeronoff) if you quickly want to understand how it works.
 
 It does not use any hardware timers, it uses the Arduino millis() function to store the start time.\
 You can find the source there: https://github.com/MichaelUray/muTimer/ \
