@@ -93,6 +93,73 @@ bool muTimer::timerOffTrigger(bool input, uint32_t delayOffTime)
     return timerOnOffTrigger(input, 0, delayOffTime);
 }
 
+// timer cycle, sets the output between on and off by the given time intervals
+bool muTimer::timerCycle(uint32_t offTime, uint32_t onTime)
+{
+    // output is on, keep it on until onTime duration is reached
+    if (_output)
+    {
+        if (millis() - _startTime >= onTime)
+        {
+            _output = 0;
+            _startTime += onTime; // adding duration time instead of to set it to millis() keeps the interval more accurate
+        }
+    }
+    else // output is off, keep it off until offTime duration is reached
+    {
+        if (millis() - _startTime >= offTime)
+        {
+            _output = 1;
+            _startTime += offTime; // adding duration time instead of to set it to millis() keeps the interval more accurate
+        }
+    }
+
+    return _output;
+}
+
+// timer cycle trigger
+// sets the output to 0 once if the onTime elapsed and if the output of timerCycle() would go to 0
+// sets the output to 1 once if the offTime elapsed and if the output of timerCycle() would go to 1
+// sets the output to 2 if the time between cycles is running
+byte muTimer::timerCycleTrigger(uint32_t offTime, uint32_t onTime)
+{
+    // output is on, keep it on until onTime duration is reached
+    if (_output)
+    {
+        if (millis() - _startTime >= onTime)
+        {
+            _output = 0;
+            _startTime += onTime; // adding the time duration since last start instead of to set it to millis() keeps the interval more accurate
+            return 0;  // returns off trigger
+        }
+    }
+    else // output is off, keep it off until offTime duration is reached
+    {
+        if (millis() - _startTime >= offTime)
+        {
+            _output = 1;
+            _startTime += offTime; // adding the time duration since last start instead of to set it to millis() keeps the interval more accurate
+            return 1;  // returns on trigger
+        }
+    }
+
+    return 2;  // returns time is running
+}
+
+// timer cycle reset to off output, allows to synchronize cycle with other action
+void muTimer::timerCycleResetToOff(void)
+{
+     _output = 0;
+     _startTime = millis();
+}
+
+// timer cycle reset to on output, allows to synchronize cycle with other action
+void muTimer::timerCycleResetToOn(void)
+{
+     _output = 1;
+     _startTime = millis();
+}
+
 // -------------
 // Timer Control
 // -------------
