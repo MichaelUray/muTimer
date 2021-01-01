@@ -13,25 +13,25 @@ public:
     // ------
 
     // timer on and off
-    bool timerOnOff(bool input, uint32_t delayOnTime, uint32_t delayOffTime);
+    bool timerOnOff(bool input, uint32_t delayTimeSwitchOn, uint32_t delayTimeSwitchOff);
 
     // timer on
-    bool timerOn(bool input, uint32_t delayOnTime);
+    bool timerOn(bool input, uint32_t delayTimeSwitchOn);
 
     // timer off
-    bool timerOff(bool input, uint32_t delayOffTime);
+    bool timerOff(bool input, uint32_t delayTimeSwitchOff);
 
     // timer on and off trigger
-    // sets the output to 0 once if the delayOffTime elapsed and if the output of timerOnOff() would go to 0
-    // sets the output to 1 once if the delayOnTime elapsed and if the output of timerOnOff() would go to 1
+    // sets the output to 0 once if the delayTimeSwitchOff elapsed and if the output of timerOnOff() would go to 0
+    // sets the output to 1 once if the delayTimeSwitchOn elapsed and if the output of timerOnOff() would go to 1
     // sets the output to 2 if the time between cycles is running
-    byte timerOnOffTrigger(bool input, uint32_t delayOnTime, uint32_t delayOffTime);
+    byte timerOnOffTrigger(bool input, uint32_t delayTimeSwitchOn, uint32_t delayTimeSwitchOff);
 
     // timer on trigger - generates a pulse once if time is elapsed
-    bool timerOnTrigger(bool input, uint32_t delayOnTime);
+    bool timerOnTrigger(bool input, uint32_t delayTimeSwitchOn);
 
     // timer off trigger - generates a pulse once if time is elapsed
-    bool timerOffTrigger(bool input, uint32_t delayOffTime);
+    bool timerOffTrigger(bool input, uint32_t delayTimeSwitchOff);
 
     // timer on/off cycle, sets the output between on and off by the given time intervals, could get used to create a flashing LED
     bool timerCycleOnOff(uint32_t offTime, uint32_t onTime);
