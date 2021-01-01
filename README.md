@@ -1,12 +1,15 @@
 # muTimer Library #
 
+## About this Library ##
 This library provides a non-blocking timer/delay functionality for Arduinos which consumes not much RAM.
+
+Have a look on [timerOnOff()](#timerOnOff()) if you quickly want to understand how it works.
 
 It does not use any hardware timers, it uses the Arduino millis() function to store the start time.\
 You can find the source there: https://github.com/MichaelUray/muTimer/ \
 MIT license, check LICENSE file for more details.
 
-### About this Library ###
+## Introduction ##
 
 There is often the requirement in a program to wait for a certain time before an action gets taken.
 The easiest way to create a delay in a program is probably the function delay(), but with the disadvantage that nothing else can happen in the meanwhile, means the delay() function is blocking other code executions while it is waiting.
@@ -195,11 +198,11 @@ Some application examples for which this library could work for.
 - Switch a pump on by a floating switch if the switch is true for at least 1 minute and turn the pump off, if the switch gets false for at least 15 seconds.
 
 
-# Functions
+# Functions #
 
-### Timer Functions ###
+## Timer Functions ##
 
-**timerOnOff()**\
+### timerOnOff() ##
 On and off delay.\
 Starts the timer if the bool 'input' gets set and it returns true when the 'on' timer given by 'delayOnTime' in msec is elapsed.\
 If the output is already set and you clear the 'input', then it starts the 'off' timer and it returns false when the time given by 'delayOfTime' in msec is elapsed.
@@ -213,7 +216,7 @@ output1 = myTimer1.timerOnOff(input1, 4000, 2000);
 // out: ___________----------_________________________---------------
 ```
 
-**timerOn()**\
+### timerOn() ###
 On delay only.\
 Same as timerOnOff(), but on delay only.
 ```cpp
@@ -226,7 +229,7 @@ output1 = myTimer1.timerOn(input1, 4000);
 // out: ___________--------_____________________
 ```
 
-**timerOff()**\
+### timerOff() ###
 Off delay only.\
 Same as timerOnOff(), but off delay only.
 ```cpp
@@ -239,7 +242,7 @@ output1 = myTimer1.timerOff(input1, 2000);
 // out: _______--------------_____
 ```
 
-**timerOnOffTrigger()**\
+### timerOnOffTrigger() ###
 On and off delay with output trigger.\
 The output gets just set once if the timer elapses.
 ```cpp
@@ -261,7 +264,7 @@ if (myTimer1.timerOnOffTrigger(input1, 4000, 2000))
 // in : _______------------_________
 // out: ___________-_________-______
 ```
-**timerOnTrigger()**\
+### timerOnTrigger() ###
 On delay only with output trigger.\
 The output gets just set once if the timer elapses.
 ```cpp
@@ -277,7 +280,7 @@ if (myTimer1.timerOnTrigger(input1, 4000))
 // out: ___________-_________________
 ```
 
-**timerOffTrigger()**\
+### timerOffTrigger() ###
 Off delay only with output trigger.\
 The output gets just set once if the timer elapses.
 ```cpp
@@ -293,33 +296,33 @@ if (myTimer1.timerOffTrigger(input1, 2000))
 // out: _____________________-_______
 ```
 
-### Timer Control ###
-**timerReset()**\
+## Timer Control ##
+### timerReset() ###
 Restarts the time from 0 and sets output != input at next timer function call.
 ```cpp
 void timerReset(void);
 ```
 
-**timerElapse()**\
+### timerElapse() ###
 Ends the current running timer interval and sets output == input at next timer function call.
 ```cpp
 void timerElapse(void);
 ```
 
-### Timer Information ###
+## Timer Information ##
 
-**timerIsRunning()**\
+### timerIsRunning() ###
 Returns true if timer is still running.
 ```cpp
 bool timerIsRunning(void);
 ```
-**getTimeElapsed()**\
+### getTimeElapsed() ###
 Returns the elapsed time since the start of the timer.
 ```cpp
 uint32_t getTimeElapsed(void);
 ```
 
-## Example ##
+# Example #
 
 ```cpp
 /*
