@@ -15,11 +15,11 @@ timerOff	KEYWORD2
 timerOnOffTrigger	KEYWORD2
 timerOnTrigger	KEYWORD2
 timerOffTrigger	KEYWORD2
-timerCycleOnOff	KEYWORD2
-timerCycleOnOffTrigger	KEYWORD2
+timerCycle	KEYWORD2
 timerCycleTrigger	KEYWORD2
-timerCycleOnOffResetToOff	KEYWORD2
-timerCycleOnOffResetToOn	KEYWORD2
+timerCycleTrigger	KEYWORD2
+timerCycleResetToOff	KEYWORD2
+timerCycleResetToOn	KEYWORD2
 timerReset	KEYWORD2
 timerElapse	KEYWORD2
 timerIsRunning	KEYWORD2
