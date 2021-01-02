@@ -97,7 +97,7 @@ bool muTimer::timerOffTrigger(bool input, uint32_t delayTimeSwitchOff)
 }
 
 // timer on/off cycle, sets the output between on and off by the given time intervals, could get used to create a flashing LED
-bool muTimer::timerCycleOnOff(uint32_t offTime, uint32_t onTime)
+bool muTimer::timerCycle(uint32_t offTime, uint32_t onTime)
 {
     if (!_output)
     { // output is off, keep it off until offTime duration is reached
@@ -120,10 +120,10 @@ bool muTimer::timerCycleOnOff(uint32_t offTime, uint32_t onTime)
 }
 
 // timer on and off cycle trigger
-// sets the output to 0 once if the onTime elapsed and if the output of timerCycleOnOff() would go to 0
-// sets the output to 1 once if the offTime elapsed and if the output of timerCycleOnOff() would go to 1
+// sets the output to 0 once if the onTime elapsed and if the output of timerCycle() would go to 0
+// sets the output to 1 once if the offTime elapsed and if the output of timerCycle() would go to 1
 // sets the output to 2 if the time between cycles is running
-byte muTimer::timerCycleOnOffTrigger(uint32_t offTime, uint32_t onTime)
+byte muTimer::timerCycleTrigger(uint32_t offTime, uint32_t onTime)
 {
     if (!_output)
     { // output is off, keep it off until offTime duration is reached
@@ -150,18 +150,18 @@ byte muTimer::timerCycleOnOffTrigger(uint32_t offTime, uint32_t onTime)
 // triggers the output cyclically by the given cycleTime
 bool muTimer::timerCycleTrigger(uint32_t cycleTime)
 {
-    return timerCycleOnOffTrigger(cycleTime, 0) == 1;
+    return timerCycleTrigger(cycleTime, 0) == 1;
 }
 
 // timer cycle reset to off output, allows to synchronize cycle with other action
-void muTimer::timerCycleOnOffResetToOff(void)
+void muTimer::timerCycleResetToOff(void)
 {
     _output = 0;
     _startTime = millis();
 }
 
 // timer cycle reset to on output, allows to synchronize cycle with other action
-void muTimer::timerCycleOnOffResetToOn(void)
+void muTimer::timerCycleResetToOn(void)
 {
     _output = 1;
     _startTime = millis();

@@ -34,22 +34,22 @@ public:
     bool timerOffTrigger(bool input, uint32_t delayTimeSwitchOff);
 
     // timer on/off cycle, sets the output between on and off by the given time intervals, could get used to create a flashing LED
-    bool timerCycleOnOff(uint32_t offTime, uint32_t onTime);
+    bool timerCycle(uint32_t offTime, uint32_t onTime);
 
     // timer on and off cycle trigger
     // sets the output to 0 once if the onTime elapsed and if the output of timerOnOffCycle() would go to 0
     // sets the output to 1 once if the offTime elapsed and if the output of timerOnOffCycle() would go to 1
     // sets the output to 2 if the time between cycles is running
-    byte timerCycleOnOffTrigger(uint32_t offTime, uint32_t onTime);
+    byte timerCycleTrigger(uint32_t offTime, uint32_t onTime);
 
     // triggers the output periodically once by the given cycleTime
     bool timerCycleTrigger(uint32_t cycleTime);
 
     // timer cycle reset to off output, allows to synchronize cycle with other timings
-    void timerCycleOnOffResetToOff(void);
+    void timerCycleResetToOff(void);
 
     // timer cycle reset to on output, allows to synchronize cycle with other timings
-    void timerCycleOnOffResetToOn(void);
+    void timerCycleResetToOn(void);
 
     // -------------
     // Timer Control

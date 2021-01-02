@@ -14,10 +14,10 @@
     + [timerOnTrigger()](#timerontrigger)
     + [timerOffTrigger()](#timerofftrigger)
   * [Timer Cycle](#timer-cycle)
-    + [timerCycleOnOff()](#timercycleonoff)
-    + [timerCycleOnOffTrigger()](#timercycleonofftrigger)
-    + [timerCycleOnOffResetToOff()](#timercycleonoffresettooff)
-    + [timerCycleOnOffResetToOn()](#timercycleonoffresettoon)
+    + [timerCycle()](#timercycle)
+    + [timerCycleTrigger()](#timercycletrigger)
+    + [timerCycleResetToOff()](#timercycleresettooff)
+    + [timerCycleResetToOn()](#timercycleresettoon)
   * [Timer Control](#timer-control)
     + [timerReset()](#timerreset)
     + [timerElapse()](#timerelapse)
@@ -29,7 +29,7 @@
 ## About this Library ##
 This library provides a non-blocking timer/delay functionality for Arduinos which consumes not much RAM.
 
-Have a look on [timerOnOff()](#timeronoff) for normal on/off delays if you quickly want to understand how it works as well as on [timerCycleOnOff()](#timercycleonoff) for periodically cycles.
+Have a look on [timerOnOff()](#timeronoff) for normal on/off delays if you quickly want to understand how it works as well as on [timerCycle()](#timercycle) for periodically cycles.
 
 It does not use any hardware timers, it uses the Arduino millis() function to store the start time.\
 You can find the source there: https://github.com/MichaelUray/muTimer/ \
@@ -100,7 +100,7 @@ void loop()
 ```
 The accuracy of the time interval in this example depends on that how often the timerOnOff() function gets called, since the next time measurement starts everytime after a call.
 
-A better way to create an accurate cycle would be to use the timerCycleOnOff() function since it internally makes sure that the time intervall stays the same.
+A better way to create an accurate cycle would be to use the timerCycle() function since it internally makes sure that the time intervall stays the same.
 ```cpp
 #include <muTimer.h>
 
@@ -126,7 +126,7 @@ void loop()
   // put your main code here, to run repeatedly:
 
   // LED flashing with 500ms off and 100ms on
-  LED1 = myTimer1.timerCycleOnOff(500, 100);
+  LED1 = myTimer1.timerCycle(500, 100);
 
   // write LED1 status to hardware output
   digitalWrite(PIN_LED, LED1);
@@ -373,27 +373,27 @@ if (myTimer1.timerOffTrigger(input1, 2000))
 
 ## Timer Cycle ##
 
-### timerCycleOnOff() ###
+### timerCycle() ###
 Sets the output between on and off by the given time intervals.
 Could get used to create LED flashing or other intervals.
 ```cpp
-bool timerCycleOnOff(uint32_t offTime, uint32_t onTime)
+bool timerCycle(uint32_t offTime, uint32_t onTime)
 
-// example: LED off 500ms, LED on 100ms
-LED1 = myTimer1.timerCycleOnOff(4000, 2000);
+// example: LED off 4000ms, LED on 2000ms
+LED1 = myTimer1.timerCycle(4000, 2000);
 
 // out: ____--____--____--____--____
 ```
-### timerCycleOnOffTrigger() ###
-Sets the output to 0 once if the onTime elapsed and if the output of timerCycleOnOff() would go to 0.
-Sets the output to 1 once if the offTime elapsed and if the output of timerCycleOnOff() would go to 1.
+### timerCycleTrigger() ###
+Sets the output to 0 once if the onTime elapsed and if the output of timerCycle() would go to 0.
+Sets the output to 1 once if the offTime elapsed and if the output of timerCycle() would go to 1.
 Sets the output to 2 if the time between cycles is running.
 Could get used to run any action once if the cycle time is elapsed.
 ```cpp
-byte timerCycleOnOffTrigger(uint32_t offTime, uint32_t onTime);
+byte timerCycleTrigger(uint32_t offTime, uint32_t onTime);
 
-// example: off 500ms, on 100ms
-out1 = myTimer1.timerCycleOnOff(4000, 2000);
+// example: off 4000ms, on 2000ms
+out1 = myTimer1.timerCycle(4000, 2000);
 if (out1 == 1)
 { // gets executed after 4000ms once, then the 2000ms delay starts
 
@@ -406,18 +406,18 @@ if (out1 == 0)
 // OUT: 2222|1|22|0|2222|1|22|0|2222
 ```
 
-### timerCycleOnOffResetToOff() ###
+### timerCycleResetToOff() ###
 Sets the output to off and starts the cycle time from now.
 ```cpp
     // timer cycle reset to off output, allows to synchronize cycle with other actions
-    void timerCycleOnOffResetToOff(void);
+    void timerCycleResetToOff(void);
 ```
 
-### timerCycleOnOffResetToOn() ###
+### timerCycleResetToOn() ###
 Sets the output to on and starts the cycle time from now.
 ```cpp
     // timer cycle reset to on output, allows to synchronize cycle with other action
-    void timerCycleOnOffResetToOn(void);
+    void timerCycleResetToOn(void);
 ```
 
 ## Timer Control ##
