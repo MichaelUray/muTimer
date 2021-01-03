@@ -455,15 +455,17 @@ out1 = myTimer1.cycle(4000);
 
 ### cycleResetToOff() ###
 Sets the output to off and starts the cycle time from now.
+Allows to synchronize cycle with other timings.
 ```cpp
-    // timer cycle reset to output off, allows to synchronize cycle with other actions
+    // timer cycle reset to output off, allows to synchronize cycle with other timings
     void cycleResetToOff(void);
 ```
 
 ### cycleResetToOn() ###
 Sets the output to on and starts the cycle time from now.
+Allows to synchronize cycle with other timings.
 ```cpp
-    // timer cycle reset to output on, allows to synchronize cycle with other action
+    // timer cycle reset to output on, allows to synchronize cycle with other timings
     void cycleResetToOn(void);
 ```
 
