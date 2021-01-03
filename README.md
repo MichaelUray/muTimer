@@ -257,12 +257,21 @@ Another disadvantage from the delay() function is, that you cannot use it within
 
 These library functions can get used for example to do any action if an input is active at least for a given time period.
 
-Some application examples for which this library could work for.
+Some application examples for which this library could work for.\
+delayOnOff() / delayOn() / delayOff()
 - Debounce a switch or button.
-- Take any action after a given time permanently, e.g. switch an LED on 5s after the input gets set.
-- Take any action after a given time just once or repeatedly, e.g. send a string via the serial interface every 5s.
+- Switch a pump on by a floating switch if the switch is true for at least 1 minute. Turn the pump off, if the switch gets false for at least 15 seconds. Prevents that the pump turns on and off to often.
+- Any other application where a delayed input or output is required.
+- Take any action after a given time permanently, e.g. switch an LED on 5s after the input gets true.
+
+delayOnTrigger()
+- Take any action after a given time just once if an input gets true. e.g. send a string via the serial interface once 5s after input gets true.
+
+cycleOnOff()
 - Create LED flashing with given on/off interval times.
-- Switch a pump on by a floating switch if the switch is true for at least 1 minute and turn the pump off, if the switch gets false for at least 15 seconds.
+
+cycleTrigger()
+- Take any action repeatedly by a given time interval, e.g. send a string via the serial interface every 5s.
 
 # Functions #
 
