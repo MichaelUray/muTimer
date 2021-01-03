@@ -30,7 +30,7 @@ void setup()
 void loop()
 {
   // 1000ms on delay
-  if (myTimer1.timerOnTrigger(1, 1000))
+  if (myTimer1.delayOnTrigger(1, 1000))
   {
     Serial.println("Timer on finished.");
   }
@@ -39,9 +39,9 @@ void loop()
   input1 = !digitalRead(PIN_BUTTON);
 
   // reset timer if input is set and timer is not running
-  if (input1 && !myTimer1.timerIsRunning())
+  if (input1 && !myTimer1.delayIsRunning())
   {
-    myTimer1.timerReset();
+    myTimer1.delayReset();
   }
 
   // The library is non-blocking.

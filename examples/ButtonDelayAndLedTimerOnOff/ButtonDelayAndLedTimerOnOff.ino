@@ -34,7 +34,7 @@ void loop()
   input1 = !digitalRead(PIN_BUTTON);
 
   // on delay 2000ms, off delay 1000ms
-  output1 = myTimer1.timerOnOff(input1, 2000, 1000);
+  output1 = myTimer1.delayOnOff(input1, 2000, 1000);
 
   // write output (LED) to hardware
   digitalWrite(PIN_LED, output1);

@@ -20,7 +20,7 @@ void setup()
 void loop()
 {
   // 5000ms on delay
-  if (myTimer1.timerOn(1, 5000))
+  if (myTimer1.delayOn(1, 5000))
   {
     Serial.println("Timer finished.");
   }

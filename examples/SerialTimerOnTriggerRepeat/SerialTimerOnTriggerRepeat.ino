@@ -20,10 +20,10 @@ void setup()
 void loop()
 {
   // 1000ms on delay, gets only executed one if time is elapsed
-  if (myTimer1.timerOnTrigger(1, 1000))
+  if (myTimer1.delayOnTrigger(1, 1000))
   {
     // resets timer to start time from 0
-    myTimer1.timerReset();
+    myTimer1.delayReset();
 
     // prints string via the serial interface to the serial monitor
     Serial.println("Timer on finished.");

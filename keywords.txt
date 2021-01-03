@@ -9,18 +9,17 @@ muTimer	KEYWORD1
 # Methods and Functions (KEYWORD2)
 #######################################
 
-timerOnOff	KEYWORD2
-timerOn	KEYWORD2
-timerOff	KEYWORD2
-timerOnOffTrigger	KEYWORD2
-timerOnTrigger	KEYWORD2
-timerOffTrigger	KEYWORD2
-timerCycle	KEYWORD2
-timerCycleTrigger	KEYWORD2
-timerCycleTrigger	KEYWORD2
-timerCycleResetToOff	KEYWORD2
-timerCycleResetToOn	KEYWORD2
-timerReset	KEYWORD2
-timerElapse	KEYWORD2
-timerIsRunning	KEYWORD2
+delayOnOff	KEYWORD2
+delayOn	KEYWORD2
+delayOff	KEYWORD2
+delayOnOffTrigger	KEYWORD2
+delayOnTrigger	KEYWORD2
+delayOffTrigger	KEYWORD2
+cycle	KEYWORD2
+cycleTrigger	KEYWORD2
+cycleResetToOff	KEYWORD2
+cycleResetToOn	KEYWORD2
+delayReset	KEYWORD2
+delayElapse	KEYWORD2
+delayIsRunning	KEYWORD2
 getTimeElapsed	KEYWORD2

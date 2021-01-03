@@ -20,7 +20,7 @@ void setup()
 void loop()
 {
   // 5000ms on delay, condition gets true only once if time is elapsed and time starts then again
-  if (myTimer1.timerCycleTrigger(5000))
+  if (myTimer1.cycleTrigger(5000))
   {
     Serial.println("Timer triggered.");
   }

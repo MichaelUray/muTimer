@@ -41,7 +41,7 @@ void loop()
   {
     // on delay 500ms, off delay 100ms
     // means the LED flashes 100ms and is then 500ms off
-    output1 = myTimer1.timerOnOff(!output1, 500, 100);
+    output1 = myTimer1.delayOnOff(!output1, 500, 100);
   }
   else
   {
