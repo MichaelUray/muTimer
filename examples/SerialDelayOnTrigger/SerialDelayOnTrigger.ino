@@ -3,6 +3,7 @@
  * Library source: https://github.com/MichaelUray/muTimer
  * 
  * This example waits for 5s and it sends then once the string "Delay-On triggered." via the serial interface.
+ * It uses the delayOnTrigger() function.
  * 
  * The library calls are non-blocking, means other code can get executed while the time duration is running.
  * 

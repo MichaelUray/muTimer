@@ -3,6 +3,7 @@
  * Library source: https://github.com/MichaelUray/muTimer
  * 
  * This example creates a blinking LED if the input button gets pressed.
+ * It uses the delayOnOff() function.
  * 
  * The library calls are non-blocking, means other code can get executed while the time duration is running.
  * 
@@ -39,21 +40,20 @@ void loop()
   // starts blinking if input is true
   if (input1)
   {
-    // on delay 500ms, off delay 100ms
-    // means the LED flashes 100ms and is then 500ms off
+    // On delay 500ms, off delay 100ms
+    // Means the LED flashes 100ms and is then 500ms off.
+    // Send the inverted output back as input of the function to toggle the input as soon as the output gets active. This creates a permanent on/off delayed cycle.
     output1 = myTimer1.delayOnOff(!output1, 500, 100);
   }
   else
   {
     output1 = 0;
   }
-  
+
   // write output (LED) to hardware
   digitalWrite(PIN_LED, output1);
-
 
   // functions are non-blocking
   // other code can get executed there in the meanwhile
   // ...
-  
 }

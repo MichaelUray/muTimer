@@ -1,13 +1,14 @@
 /*
- * Example SerialDelayOnTriggerRepeat.ino for muTimer library.
+ * Example SerialDelayOnTriggerRepeatWithReset.ino for muTimer library.
  * Library source: https://github.com/MichaelUray/muTimer
  * 
  * This example waits for 1s and it sends then once the string "Delay-On triggered." via the serial interface. It does repeat this action all the time.
+ * It uses the delayOnTrigger() and delayReset() functions.
  * 
  * The library calls are non-blocking, means other code can get executed while the time duration is running.
  * 
  */
- #include <muTimer.h>
+#include <muTimer.h>
 
 muTimer myTimer1 = muTimer();
 

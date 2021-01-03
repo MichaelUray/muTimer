@@ -4,6 +4,7 @@
  * 
  * This example has a button which needs to get pressed for 2s to turn a LED on and it requires the button released for 1s to turn the LED off.
  * You can use such a functionality to debounce a button or switch, but in this case a few ms delay are probably a good delay value instead of 2s and 1s like in this example.
+ * It uses the delayOnOff() function.
  *
  * The library calls are non-blocking, means other code can get executed while the time duration is running.
  * 

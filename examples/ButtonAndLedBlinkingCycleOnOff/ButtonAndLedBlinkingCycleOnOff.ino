@@ -39,21 +39,18 @@ void loop()
   // starts blinking if input is true
   if (input1)
   {
-    // on delay 500ms, off delay 100ms
-    // means the LED flashes 100ms and is then 500ms off
-    output1 = myTimer1.cycleOnOff(500, 100);
+    // the LED is on for 100ms and then off for 500ms
+    output1 = myTimer1.cycleOnOff(100, 500);
   }
   else
   {
     output1 = 0;
   }
-  
+
   // write output (LED) to hardware
   digitalWrite(PIN_LED, output1);
-
 
   // functions are non-blocking
   // other code can get executed there in the meanwhile
   // ...
-  
 }

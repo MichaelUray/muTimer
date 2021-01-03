@@ -1,9 +1,10 @@
 /*
- * Example SerialDelayOnTriggerReset.ino for muTimer library.
+ * Example SerialDelayOnTriggerResetIsRunning.ino for muTimer library.
  * Library source: https://github.com/MichaelUray/muTimer
  * 
  * This example waits for 1s and it sends then once the string "Delay-On triggered." via the serial interface.
  * If you push the button, then it waits again 1s to send the string.
+ * It uses the functions delayOnTrigger(), delayIsRunning() and delayReset().
  * 
  * The library calls are non-blocking, means other code can get executed while the time duration is running.
  * 

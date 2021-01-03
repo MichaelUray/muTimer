@@ -4,6 +4,7 @@
  * 
  * This example creates a blinking LED (100ms/500ms) if the input button gets pressed for at least 1s.
  * If the button gets released for at least 2s, then the blinking stops.
+ * It uses the delayOnOff() and cycleOnOff() functions.
  * 
  * The library calls are non-blocking, means other code can get executed while the time duration is running.
  * 

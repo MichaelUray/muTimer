@@ -87,13 +87,13 @@ byte muTimer::delayOnOffTrigger(bool input, uint32_t delayTimeSwitchOn, uint32_t
 // delay on with trigger output - gets true only once if the delay-on time is elapsed
 bool muTimer::delayOnTrigger(bool input, uint32_t delayTimeSwitchOn)
 {
-    return delayOnOffTrigger(input, delayTimeSwitchOn, 0);
+    return delayOnOffTrigger(input, delayTimeSwitchOn, 0) == 1;
 }
 
 // delay off with trigger output - gets true only once if the delay-off time is elapsed
 bool muTimer::delayOffTrigger(bool input, uint32_t delayTimeSwitchOff)
 {
-    return delayOnOffTrigger(input, 0, delayTimeSwitchOff);
+    return delayOnOffTrigger(input, 0, delayTimeSwitchOff) == 0;
 }
 
 // -------------
