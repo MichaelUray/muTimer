@@ -1,13 +1,13 @@
 /*
- * Example ButtonAndLedBlinkingTimerOnOff.ino for muTimer library.
+ * Example ButtonDelayAndLedDelayOnOff.ino for muTimer library.
  * Library source: https://github.com/MichaelUray/muTimer
  * 
- * This example creates a blinking LED if the input button gets pressed.
- * 
+ * This example has a button which needs to get pressed for 2s to turn a LED on and it requires the button released for 1s to turn the LED off.
+ * You can use such a functionality to debounce a button or switch, but in this case a few ms delay are probably a good delay value instead of 2s and 1s like in this example.
+ *
  * The library calls are non-blocking, means other code can get executed while the time duration is running.
  * 
  */
-
 #include <muTimer.h>
 
 muTimer myTimer1 = muTimer();
@@ -16,10 +16,7 @@ muTimer myTimer1 = muTimer();
 #define PIN_BUTTON 3
 #define PIN_LED 9
 
-// pin status read from input
 bool input1;
-
-// output written to hardware output pin
 bool output1;
 
 void setup()
@@ -36,24 +33,9 @@ void loop()
   // read input (button) from hardware (input is inverted since internal pull-up resistor gets used)
   input1 = !digitalRead(PIN_BUTTON);
 
-  // starts blinking if input is true
-  if (input1)
-  {
-    // on delay 500ms, off delay 100ms
-    // means the LED flashes 100ms and is then 500ms off
-    output1 = myTimer1.delayOnOff(!output1, 500, 100);
-  }
-  else
-  {
-    output1 = 0;
-  }
-  
+  // on delay 2000ms, off delay 1000ms
+  output1 = myTimer1.delayOnOff(input1, 2000, 1000);
+
   // write output (LED) to hardware
   digitalWrite(PIN_LED, output1);
-
-
-  // functions are non-blocking
-  // other code can get executed there in the meanwhile
-  // ...
-  
 }

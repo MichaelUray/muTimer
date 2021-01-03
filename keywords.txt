@@ -15,11 +15,12 @@ delayOff	KEYWORD2
 delayOnOffTrigger	KEYWORD2
 delayOnTrigger	KEYWORD2
 delayOffTrigger	KEYWORD2
-cycle	KEYWORD2
-cycleTrigger	KEYWORD2
-cycleResetToOff	KEYWORD2
-cycleResetToOn	KEYWORD2
 delayReset	KEYWORD2
 delayElapse	KEYWORD2
 delayIsRunning	KEYWORD2
+cycleOnOff	KEYWORD2
+cycleOnOffTrigger	KEYWORD2
+cycleTrigger	KEYWORD2
+cycleResetToOff	KEYWORD2
+cycleResetToOn	KEYWORD2
 getTimeElapsed	KEYWORD2

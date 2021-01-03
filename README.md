@@ -6,30 +6,34 @@
   * [About this Library](#about-this-library)
   * [Introduction](#introduction)
 - [Functions](#functions)
-  * [Timer On/Off](#timeronoff)
-    + [delayOnOff()](#timeronoff)
-    + [delayOn()](#timeron)
-    + [delayOff()](#timeroff)
-    + [delayOnOffTrigger()](#timeronofftrigger)
-    + [delayOnTrigger()](#timerontrigger)
-    + [delayOffTrigger()](#timerofftrigger)
-  * [Timer Cycle](#timer-cycle)
-    + [cycle()](#timercycle)
-    + [cycleTrigger()](#timercycletrigger)
-    + [cycleResetToOff()](#timercycleresettooff)
-    + [cycleResetToOn()](#timercycleresettoon)
-  * [Timer Control](#timer-control)
-    + [delayReset()](#timerreset)
-    + [delayElapse()](#timerelapse)
-  * [Timer Information](#timer-information)
-    + [delayIsRunning()](#timerisrunning)
+  * [Delay On/Off](#delay-onoff)
+    + [delayOnOff()](#delayonoff)
+    + [delayOn()](#delayon)
+    + [delayOff()](#delayoff)
+  * [Delay On/Off Trigger](#delay-onoff-trigger)
+    + [delayOnOffTrigger()](#delayonofftrigger)
+    + [delayOnTrigger()](#delayontrigger)
+    + [delayOffTrigger()](#delayofftrigger)
+  * [Delay Control](#delay-control)
+    + [delayReset()](#delayreset)
+    + [delayElapse()](#delayelapse)
+  * [Delay Information](#delay-information)
+    + [delayIsRunning()](#delayisrunning)
+  * [Cycle On/Off](#cycle-onoff)
+    + [cycleOnOff()](#cycleonoff)
+  * [Cycle Trigger](#cycle-trigger)
+    + [cycleTrigger()](#cycletrigger)
+  * [Cycle Control](#cycle-control)
+    + [cycleResetToOff()](#cycleresettooff)
+    + [cycleResetToOn()](#cycleresettoon)
+  * [General Information](#general-information)
     + [getTimeElapsed()](#gettimeelapsed)
 - [Example](#example)
 
 ## About this Library ##
-This library provides a non-blocking timer/delay functionality for Arduinos which consumes not much RAM.
+This library provides a non-blocking timer/delay/cycle functionality for Arduinos which consumes not much RAM.
 
-Have a look on [delayOnOff()](#timeronoff) for normal on/off delays if you quickly want to understand how it works as well as on [cycle()](#timercycle) for periodically cycles.
+Have a look on [delayOnOff()](#delayonoff) for normal on/off delays if you quickly want to understand how it works as well as on [cycleOnOff()](#cycle-onoff) for periodically cycles.
 
 It does not use any hardware timers, it uses the Arduino millis() function to store the start time.\
 You can find the source there: https://github.com/MichaelUray/muTimer/ \
@@ -100,7 +104,7 @@ void loop()
 ```
 The accuracy of the time interval in this example depends on that how often the delayOnOff() function gets called, since the next time measurement starts everytime after a call.
 
-A better way to create an accurate cycle would be to use the cycle() function since it internally makes sure that the time intervall stays the same.
+A better way to create an accurate on/off cycle would be to use the cycleOnOff() function since it internally makes sure that the time intervall stays the same.
 ```cpp
 #include <muTimer.h>
 
@@ -126,7 +130,7 @@ void loop()
   // put your main code here, to run repeatedly:
 
   // LED flashing with 500ms off and 100ms on
-  LED1 = myTimer1.cycle(500, 100);
+  LED1 = myTimer1.cycleOnOff(500, 100);
 
   // write LED1 status to hardware output
   digitalWrite(PIN_LED, LED1);
@@ -190,7 +194,7 @@ void loop()
 ```
 There is a problem in this example which occurs if button1 stays true for longer as the uint32_t range in msec (~49 days) minus the interval, the condition would get then false again, even if this probably happens not often in the most of the applications.
 
-The muTimer library does not have this problem since it only gets active if (output != input). If the timer is already elapsed it does not care anymore about the time difference.
+The muTimer library does not have this problem since it only gets active if (output != input). If the time is already elapsed it does not care anymore about the time difference.
 
 This is how the same example looks with the muTimer library:
 ```cpp
@@ -262,12 +266,13 @@ Some application examples for which this library could work for.
 
 # Functions #
 
-## Timer On/Off ##
+## Delay On/Off ##
 
 ### delayOnOff() ##
 On and off delay.\
-Starts the timer if the bool 'input' gets set and it returns true when the 'on' timer given by 'delayTimeSwitchOn' in msec is elapsed.\
-If the output is already set and you clear the 'input', then it starts the 'off' timer and it returns false when the time given by 'delayOfTime' in msec is elapsed.
+Combines delayOn() and delayOff() in one function.\
+Starts the delay if the bool 'input' gets set and it returns true when the 'on' time given by 'delayTimeSwitchOn' in msec is elapsed.\
+If the output is already set and you clear the 'input', then it starts the 'off' delay and it returns false when the time given by 'delayOfTime' in msec is elapsed.
 ```cpp
 bool delayOnOff(bool input, uint32_t delayTimeSwitchOn, uint32_t delayTimeSwitchOff);
 
@@ -281,7 +286,7 @@ output1 = myTimer1.delayOnOff(input1, 4000, 2000);
 ### delayOn() ###
 On delay only.\
 Same as delayOnOff(), but on delay only.\
-It works similar to the ton() function from the IEC-Timers which are well known in the PLC programming world.
+It works similar to the ton() function from the IEC-Timers which are well known in the PLC programming world, or like a regular time delay relay with on delay.
 ```cpp
 bool delayOn(bool input, uint32_t delayTimeSwitchOn);
   
@@ -295,7 +300,7 @@ output1 = myTimer1.delayOn(input1, 4000);
 ### delayOff() ###
 Off delay only.\
 Same as delayOnOff(), but off delay only.\
-It works similar to the tof() function from the IEC-Timers which are well known in the PLC programming world.
+It works similar to the tof() function from the IEC-Timers which are well known in the PLC programming world, or like a regular time delay relay with off delay.
 ```cpp
 bool delayOff(bool input, uint32_t delayTimeSwitchOff);
 
@@ -306,9 +311,11 @@ output1 = myTimer1.delayOff(input1, 2000);
 // out: _______--------------_____
 ```
 
+## Delay On/Off Trigger ##
+
 ### delayOnOffTrigger() ###
 On and off delay with output trigger.\
-Timer on and off trigger.\
+Delay on and off trigger.\
 Sets the output to 0 once if the delayOffTime elapsed and if the output of delayOnOff() would go to 0.\
 Sets the output to 1 once if the delayOnTime elapsed and if the output of delayOnOff() would go to 1.\
 Sets the output to 2 if the time between cycles is running.
@@ -318,17 +325,17 @@ byte delayOnOffTrigger(bool input, uint32_t delayTimeSwitchOff);
 // example: on delay 4000ms, off delay 2000ms
 switch (myTimer1.delayOnOffTrigger(input1, 4000, 2000))
 { 
-  // timer elapsed, output = off now, gets executed just once
+  // delay time elapsed, output = off now, gets executed just once
   case 0:
-    Serial.println("Timer off finished: output == 0");
+    Serial.println("Delay off finished: output == 0");
   break;
   
-  // timer elapsed, output = on now, gets executed just once
+  // delay time elapsed, output = on now, gets executed just once
   case 1:
-    Serial.println("Timer on finished: output == 1");
+    Serial.println("Delay on finished: output == 1");
   break;
   
-  // timer is running
+  // delay is running
   case 2:
     // ...
   break;
@@ -340,7 +347,7 @@ switch (myTimer1.delayOnOffTrigger(input1, 4000, 2000))
 ```
 ### delayOnTrigger() ###
 On delay only with output trigger.\
-The output gets just set once if the timer elapses.
+The output gets just true once if the delay time elapses.
 ```cpp
 bool delayOnTrigger(bool input, uint32_t delayTimeSwitchOff);
 
@@ -356,7 +363,7 @@ if (myTimer1.delayOnTrigger(input1, 4000))
 
 ### delayOffTrigger() ###
 Off delay only with output trigger.\
-The output gets just set once if the timer elapses.
+The output gets just true once if the delay time elapses.
 ```cpp
 bool delayOffTrigger(bool input, uint32_t delayTimeSwitchOff);
 
@@ -370,37 +377,64 @@ if (myTimer1.delayOffTrigger(input1, 2000))
 // out: _____________________-_______
 ```
 
+## Delay Control ##
 
-## Timer Cycle ##
+### delayReset() ###
+Restarts the time from 0 and sets output != input at the next delay function call.
+```cpp
+void delayReset(void);
+```
 
-### cycle() ###
+### delayElapse() ###
+Ends the current running delay interval and sets output == input at the next delay function call.
+```cpp
+void delayElapse(void);
+```
+
+## Delay Information ##
+
+### delayIsRunning() ###
+Returns true if delay is still running.
+```cpp
+bool delayIsRunning(void);
+```
+
+## Cycle On/Off ##
+
+### cycleOnOff() ###
 Sets the output between on and off by the given time intervals.
 Could get used to create LED flashing or other intervals.
 ```cpp
-bool cycle(uint32_t offTime, uint32_t onTime)
+bool cycleOnOff(uint32_t onTime, uint32_t offTime)
 
 // example: LED off 4000ms, LED on 2000ms
-LED1 = myTimer1.cycle(4000, 2000);
+LED1 = myTimer1.cycleOnOff(4000, 2000);
 
 // out: ____--____--____--____--____
 ```
+
+## Cycle Trigger ##
+
 ### cycleTrigger() ###
-Sets the output to 0 once if the onTime elapsed and if the output of cycle() would go to 0.
-Sets the output to 1 once if the offTime elapsed and if the output of cycle() would go to 1.
+Sets the output to 0 once if the onTime elapsed and if the output of cycleOnOff() would go to 0.
+Sets the output to 1 once if the offTime elapsed and if the output of cycleOnOff() would go to 1.
 Sets the output to 2 if the time between cycles is running.
 Could get used to run any action once if the cycle time is elapsed.
 ```cpp
 byte cycleTrigger(uint32_t offTime, uint32_t onTime);
 
-// example: off 4000ms, on 2000ms
-out1 = myTimer1.cycle(4000, 2000);
-if (out1 == 1)
-{ // gets executed after 4000ms once, then the 2000ms delay starts
+// example: on 2000ms, off 4000ms
+switch myTimer1.cycleOnOffTrigger(2000, 4000);
+{
+	// gets executed after 2000ms once, then the 4000ms delay starts
+	case 0:
+	
+	break;
 
-}
-if (out1 == 0)
-{ // gets executed after 2000ms once, then the 4000ms delay starts
-  
+	// gets executed after 4000ms once, then the 2000ms delay starts
+	case 1:
+	
+	break;
 }
 
 // OUT: 2222|1|22|0|2222|1|22|0|2222
@@ -417,51 +451,36 @@ out1 = myTimer1.cycle(4000);
 //OUT: ____-____-____-____-____
 ```
 
+## Cycle Control ##
+
 ### cycleResetToOff() ###
 Sets the output to off and starts the cycle time from now.
 ```cpp
-    // timer cycle reset to off output, allows to synchronize cycle with other actions
+    // timer cycle reset to output off, allows to synchronize cycle with other actions
     void cycleResetToOff(void);
 ```
 
 ### cycleResetToOn() ###
 Sets the output to on and starts the cycle time from now.
 ```cpp
-    // timer cycle reset to on output, allows to synchronize cycle with other action
+    // timer cycle reset to output on, allows to synchronize cycle with other action
     void cycleResetToOn(void);
 ```
 
-## Timer Control ##
-### delayReset() ###
-Restarts the time from 0 and sets output != input at the next timer function call.
-```cpp
-void delayReset(void);
-```
+## General Information ##
 
-### delayElapse() ###
-Ends the current running timer interval and sets output == input at the next timer function call.
-```cpp
-void delayElapse(void);
-```
-
-## Timer Information ##
-
-### delayIsRunning() ###
-Returns true if timer is still running.
-```cpp
-bool delayIsRunning(void);
-```
 ### getTimeElapsed() ###
-Returns the elapsed time since the start of the timer.
+Returns the elapsed time since the start of the delay.
 ```cpp
 uint32_t getTimeElapsed(void);
 ```
+
 
 # Example #
 
 ```cpp
 /*
- * Example ButtonAndLedBlinkingTimerOnOff.ino for muTimer library.
+ * Example ButtonAndLedBlinkingDelayOnOff.ino for muTimer library.
  * Library source: https://github.com/MichaelUray/muTimer
  * 
  * This example creates a blinking LED if the input button gets pressed.

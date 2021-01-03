@@ -1,5 +1,5 @@
 /*
- * Example SerialTimerCycleTrigger.ino for muTimer library.
+ * Example SerialCycleTrigger.ino for muTimer library.
  * Library source: https://github.com/MichaelUray/muTimer
  * 
  * This example sends every 5s the string "Timer triggered." via the serial interface.
@@ -22,7 +22,7 @@ void loop()
   // 5000ms on delay, condition gets true only once if time is elapsed and time starts then again
   if (myTimer1.cycleTrigger(5000))
   {
-    Serial.println("Timer triggered.");
+    Serial.println("Cycle triggered.");
   }
 
   // The library is non-blocking.

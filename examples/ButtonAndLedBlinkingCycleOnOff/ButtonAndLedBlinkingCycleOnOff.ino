@@ -1,5 +1,5 @@
 /*
- * Example ButtonAndLedBlinkingTimerOnOff.ino for muTimer library.
+ * Example ButtonAndLedBlinkingCycleOnOff.ino for muTimer library.
  * Library source: https://github.com/MichaelUray/muTimer
  * 
  * This example creates a blinking LED if the input button gets pressed.
@@ -41,7 +41,7 @@ void loop()
   {
     // on delay 500ms, off delay 100ms
     // means the LED flashes 100ms and is then 500ms off
-    output1 = myTimer1.cycle(500, 100);
+    output1 = myTimer1.cycleOnOff(500, 100);
   }
   else
   {

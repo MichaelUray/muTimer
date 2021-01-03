@@ -1,8 +1,8 @@
 /*
- * Example SerialTimerOn.ino for muTimer library.
+ * Example SerialDelayOn.ino for muTimer library.
  * Library source: https://github.com/MichaelUray/muTimer
  * 
- * This example waits for 5s and it is sending then the string "Timer finished." permanently via the serial interface.
+ * This example waits for 5s and it is sending then the string "Delay-On finished." permanently via the serial interface.
  * 
  * The library calls are non-blocking, means other code can get executed while the time duration is running.
  * 
@@ -22,7 +22,7 @@ void loop()
   // 5000ms on delay
   if (myTimer1.delayOn(1, 5000))
   {
-    Serial.println("Timer finished.");
+    Serial.println("Delay-On finished.");
   }
 
   // library is non-blocking
