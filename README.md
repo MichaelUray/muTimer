@@ -129,8 +129,8 @@ void loop()
 {
   // put your main code here, to run repeatedly:
 
-  // LED flashing with 500ms off and 100ms on
-  LED1 = myTimer1.cycleOnOff(500, 100);
+  // LED flashing with 100ms on and 500ms off
+  LED1 = myTimer1.cycleOnOff(100, 500);
 
   // write LED1 status to hardware output
   digitalWrite(PIN_LED, LED1);
@@ -407,8 +407,8 @@ Could get used to create LED flashing or other intervals.
 ```cpp
 bool cycleOnOff(uint32_t onTime, uint32_t offTime)
 
-// example: LED off 4000ms, LED on 2000ms
-LED1 = myTimer1.cycleOnOff(4000, 2000);
+// example: LED on 2000ms, LED off 4000ms
+LED1 = myTimer1.cycleOnOff(2000, 4000);
 
 // out: ____--____--____--____--____
 ```
