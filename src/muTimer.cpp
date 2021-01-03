@@ -190,7 +190,7 @@ byte muTimer::cycleOnOffTrigger(uint32_t offTime, uint32_t onTime)
 // triggers the output cyclically by the given cycleTime, could get used to run periodically actions
 bool muTimer::cycleTrigger(uint32_t cycleTime)
 {
-    return cycleOnOffTrigger(cycleTime, 0) == 1;
+    return cycleOnOffTrigger(0, cycleTime) == 1;
 }
 
 // -------------
