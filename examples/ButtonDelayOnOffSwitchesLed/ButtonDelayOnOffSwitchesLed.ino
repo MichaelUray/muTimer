@@ -1,5 +1,5 @@
 /*
- * Example ButtonDelayAndLedDelayOnOff.ino for muTimer library.
+ * Example ButtonDelayOnOffSwitchesLed.ino for muTimer library.
  * Library source: https://github.com/MichaelUray/muTimer
  * 
  * This example has a button which needs to get pressed for 2s to turn a LED on and it requires the button released for 1s to turn the LED off.
