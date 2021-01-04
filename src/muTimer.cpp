@@ -12,7 +12,10 @@
 // constructor
 muTimer::muTimer(void)
 {
+    // ms as default
     _usTimeBase = 0;
+
+    // sets input and output status to 0
     _input_M = 0;
     _output = 0;
 }

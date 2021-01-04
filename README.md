@@ -526,15 +526,16 @@ uint32_t getTimeElapsed(void);
 ## Configuration ##
 
 ### setTimeBaseToMs() ###
-Sets the time base of the timing functions to ms (milliseconds). [default]
+[default]\
+Sets the time base of the timing functions to ms (milliseconds).\
 All time functions use then ms.
 ```cpp
 void setTimeBaseToMs(void);
 ```
 
 ### setTimeBaseToUs() ###
-Sets the time base of the timing functions to us (microseconds).
-All time functions use the us.
+Sets the time base of the timing functions to us (microseconds).\
+All time functions use then us.
 ```cpp
 void setTimeBaseToMs(void);
 ```
