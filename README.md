@@ -39,6 +39,7 @@
   * [General Information](#general-information)
     + [getTimeElapsed()](#gettimeelapsed)
 - [Example](#example)
+- [Forum Discussions](#forum-discussions)
 
 
 ## About this Library ##
@@ -586,3 +587,10 @@ void loop()
 }
 ```
 
+# Forum Discussions #
+
+There are several places to discuss the library and its functions and/or issues.
+- [Github Discussions](https://github.com/MichaelUray/muTimer/discussions)
+- [Github Issues](https://github.com/MichaelUray/muTimer/issues)
+- [Arduino Forum](https://forum.arduino.cc/index.php?topic=720536.msg4842211)
+- [PlatformIO Forum](https://community.platformio.org/t/new-library-mutimer-on-off-delay-cycle-timer-non-blocking-for-arduino/18257)
