@@ -38,6 +38,9 @@
     + [cycleResetToOn()](#cycleresettoon)
   * [General Information](#general-information)
     + [getTimeElapsed()](#gettimeelapsed)
+  * [Configuration](#configuration)
+    + [setTimeBaseToMs()](#settimebasetoms)
+    + [setTimeBaseToUs()](#settimebasetous)
 - [Example](#example)
 - [Forum Discussions](#forum-discussions)
 
@@ -518,6 +521,22 @@ void cycleResetToOn(void);
 Returns the elapsed time since the start of the delay.
 ```cpp
 uint32_t getTimeElapsed(void);
+```
+
+## Configuration ##
+
+### setTimeBaseToMs() ###
+Sets the time base of the timing functions to ms (milliseconds). [default]
+All time functions use then ms.
+```cpp
+void setTimeBaseToMs(void);
+```
+
+### setTimeBaseToUs() ###
+Sets the time base of the timing functions to us (microseconds).
+All time functions use the us.
+```cpp
+void setTimeBaseToMs(void);
 ```
 
 

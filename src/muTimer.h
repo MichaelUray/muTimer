@@ -92,10 +92,31 @@ public:
     // returns the time elapsed since start
     uint32_t getTimeElapsed(void);
 
+    // -------------
+    // Configuration
+    // -------------
+
+    // set time base to ms (default)
+    void setTimeBaseToMs(void);
+
+    // set time base to us
+    void setTimeBaseToUs(void);
+
 private:
+    // memorize input status
     bool _input_M;
+
+    // output status
     bool _output;
+
+    // time base in us
+    bool _usTimeBase;
+
+    // start time of timer/delay function
     uint32_t _startTime;
+
+    // returns the current time in ms or us since start of the MCU
+    uint32_t getCurrentTime(void);
 };
 
 #endif /* mTimer_h */

@@ -12,6 +12,9 @@
 // constructor
 muTimer::muTimer(void)
 {
+    _usTimeBase = 0;
+    _input_M = 0;
+    _output = 0;
 }
 
 // ------
@@ -25,20 +28,20 @@ bool muTimer::delayOnOff(bool input, uint32_t delayTimeSwitchOn, uint32_t delayT
     if (_input_M != input)
     {
         _input_M = input;
-        _startTime = millis();
+        _startTime = getCurrentTime();
     }
 
     // delay on
     if (!_output && input)
     {
-        if (millis() - _startTime >= delayTimeSwitchOn)
+        if (getCurrentTime() - _startTime >= delayTimeSwitchOn)
             _output = 1;
     }
 
     // delay off
     if (_output && !input)
     {
-        if (millis() - _startTime >= delayTimeSwitchOff)
+        if (getCurrentTime() - _startTime >= delayTimeSwitchOff)
             _output = 0;
     }
 
@@ -67,13 +70,13 @@ byte muTimer::delayOnOffTrigger(bool input, uint32_t delayTimeSwitchOn, uint32_t
     if (_input_M != input)
     {
         _input_M = input;
-        _startTime = millis();
+        _startTime = getCurrentTime();
     }
 
     // delay on
     if (!_output && input)
     {
-        if (millis() - _startTime >= delayTimeSwitchOn)
+        if (getCurrentTime() - _startTime >= delayTimeSwitchOn)
         {
             _output = 1;
             return 1;
@@ -83,7 +86,7 @@ byte muTimer::delayOnOffTrigger(bool input, uint32_t delayTimeSwitchOn, uint32_t
     // delay off
     if (_output && !input)
     {
-        if (millis() - _startTime >= delayTimeSwitchOff)
+        if (getCurrentTime() - _startTime >= delayTimeSwitchOff)
         {
             _output = 0;
             return 0;
@@ -112,7 +115,7 @@ bool muTimer::delayOffTrigger(bool input, uint32_t delayTimeSwitchOff)
 // restarts the time from 0 and sets output != input at next delay function call
 void muTimer::delayReset(void)
 {
-    _startTime = millis();
+    _startTime = getCurrentTime();
 
     if (_input_M)
     {
@@ -150,18 +153,18 @@ bool muTimer::cycleOnOff(uint32_t onTime, uint32_t offTime)
 {
     if (!_output)
     { // output is off, keep it off until offTime duration is reached
-        if (millis() - _startTime >= offTime)
+        if (getCurrentTime() - _startTime >= offTime)
         {
             _output = 1;
-            _startTime += offTime; // adding duration time instead of to set it to millis() keeps the interval more accurate
+            _startTime += offTime; // adding duration time instead of to set it to getCurrentTime() keeps the interval more accurate
         }
     }
     else
     {
-        if (millis() - _startTime >= onTime)
+        if (getCurrentTime() - _startTime >= onTime)
         { // output is on, keep it on until onTime duration is reached
             _output = 0;
-            _startTime += onTime; // adding duration time instead of to set it to millis() keeps the interval more accurate
+            _startTime += onTime; // adding duration time instead of to set it to getCurrentTime() keeps the interval more accurate
         }
     }
 
@@ -176,19 +179,19 @@ byte muTimer::cycleOnOffTrigger(uint32_t offTime, uint32_t onTime)
 {
     if (!_output)
     { // output is off, keep it off until offTime duration is reached
-        if (millis() - _startTime >= offTime)
+        if (getCurrentTime() - _startTime >= offTime)
         {
             _output = 1;
-            _startTime += offTime; // adding the time duration since last start instead of to set it to millis() keeps the interval more accurate
+            _startTime += offTime; // adding the time duration since last start instead of to set it to getCurrentTime() keeps the interval more accurate
             return 1;              // returns on trigger
         }
     }
     else
     { // output is on, keep it on until onTime duration is reached
-        if (millis() - _startTime >= onTime)
+        if (getCurrentTime() - _startTime >= onTime)
         {
             _output = 0;
-            _startTime += onTime; // adding the time duration since last start instead of to set it to millis() keeps the interval more accurate
+            _startTime += onTime; // adding the time duration since last start instead of to set it to getCurrentTime() keeps the interval more accurate
             return 0;             // returns off trigger
         }
     }
@@ -210,14 +213,14 @@ bool muTimer::cycleTrigger(uint32_t cycleTime)
 void muTimer::cycleResetToOff(void)
 {
     _output = 0;
-    _startTime = millis();
+    _startTime = getCurrentTime();
 }
 
 // cycle reset to output on, allows to synchronize cycle with other timings
 void muTimer::cycleResetToOn(void)
 {
     _output = 1;
-    _startTime = millis();
+    _startTime = getCurrentTime();
 }
 
 // -------------------
@@ -227,5 +230,34 @@ void muTimer::cycleResetToOn(void)
 // returns the time elapsed since start
 uint32_t muTimer::getTimeElapsed(void)
 {
-    return millis() - _startTime;
+    return getCurrentTime() - _startTime;
+}
+
+// -------------
+// Configuration
+// -------------
+
+// set time base to ms (default)
+void muTimer::setTimeBaseToMs(void)
+{
+    _usTimeBase = 0;
+}
+
+// set time base to us
+void muTimer::setTimeBaseToUs(void)
+{
+    _usTimeBase = 1;
+}
+
+// -----------------
+// General Functions
+// -----------------
+
+// returns the current time in ms or us since start of the MCU
+uint32_t muTimer::getCurrentTime(void)
+{
+    if (_usTimeBase)
+        return micros();
+    else
+        return millis();
 }
