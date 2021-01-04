@@ -1,3 +1,12 @@
+/*
+    Name: muTimer Library
+    Author: Michael Uray
+    E-Mail: mu@spamfence.net
+    Source Repository: https://github.com/MichaelUray/muTimer
+    Copyright (C): Michael Uray / Graz / Austria
+    Licence: MIT, check LICENSE file (https://github.com/MichaelUray/muTimer/blob/main/LICENSE) which is included with the source
+*/
+
 #include "muTimer.h"
 
 // constructor
