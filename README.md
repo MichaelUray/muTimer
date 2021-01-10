@@ -376,6 +376,8 @@ output1 = myTimer1.delayOnOff(input1, 4000, 2000);
 On delay only.\
 Same as delayOnOff(), but on delay only.\
 It works similar to the ton() function from the IEC-Timers which are well known in the PLC programming world, or like a regular time delay relay with on delay.
+<br>
+
 ![delayOn](img/delayOn.svg)
 
 ```cpp
@@ -392,6 +394,8 @@ output1 = myTimer1.delayOn(input1, 4000);
 Off delay only.\
 Same as delayOnOff(), but off delay only.\
 It works similar to the tof() function from the IEC-Timers which are well known in the PLC programming world, or like a regular time delay relay with off delay.
+<br>
+
 ![delayOff](img/delayOff.svg)
 ```cpp
 bool delayOff(bool input, uint32_t delayTimeSwitchOff);
@@ -498,6 +502,8 @@ bool delayIsRunning(void);
 ### cycleOnOff() ###
 Sets the output between on and off by the given time intervals.
 Could get used to create LED flashing or other intervals. To write only to the output on changes look at [cycleOnOffTrigger()](#cycleonofftrigger).
+<br>
+
 ![cycleOnOff](img/cycleOnOff.svg)
 ```cpp
 bool cycleOnOff(uint32_t onTime, uint32_t offTime)
