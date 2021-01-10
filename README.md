@@ -58,10 +58,13 @@ MIT license, check LICENSE file for more details.
 
 There is often the requirement in a program to wait for a certain time before an action gets taken.
 
-You should look on [delayOnOff()](#delayonoff) for normal on/off delays, as well as on [cycleOnOff()](#cycle-onoff) for periodically cycles if you quickly want to understand how the most important functions of this library works.
-
 These library functions can get used for example to do any action if an input is true for at least for a given time period.
 
+You should look on [delayOn()](#delayon) and [delayOff()](#delayoff) for normal on/off delays, as well as on [cycleOnOff()](#cycle-onoff) for periodically cycles if you quickly want to understand how the most important functions of this library work.
+
+![delayOn](img/delayOn.svg)
+![delayOff](img/delayOff.svg)
+![cycleOnOff](img/cycleOnOff.svg)
 
 ## Application Examples ##
 
@@ -86,7 +89,7 @@ Some application examples for which this library could work for.
 
 ## Comparision to manually programmed timing solutions ##
 
-### delay () ###
+### delay() ###
 The easiest way to create a delay in a program is probably the function delay(), but with the disadvantage that nothing else can happen in the meanwhile. Means the delay() function is blocking other code executions while it is waiting.
 
 ```cpp
@@ -330,6 +333,8 @@ output1 = myTimer1.delayOnOff(input1, 4000, 2000);
 On delay only.\
 Same as delayOnOff(), but on delay only.\
 It works similar to the ton() function from the IEC-Timers which are well known in the PLC programming world, or like a regular time delay relay with on delay.
+![delayOn](img/delayOn.svg)
+
 ```cpp
 bool delayOn(bool input, uint32_t delayTimeSwitchOn);
   
@@ -344,6 +349,7 @@ output1 = myTimer1.delayOn(input1, 4000);
 Off delay only.\
 Same as delayOnOff(), but off delay only.\
 It works similar to the tof() function from the IEC-Timers which are well known in the PLC programming world, or like a regular time delay relay with off delay.
+![delayOff](img/delayOff.svg)
 ```cpp
 bool delayOff(bool input, uint32_t delayTimeSwitchOff);
 
@@ -449,6 +455,7 @@ bool delayIsRunning(void);
 ### cycleOnOff() ###
 Sets the output between on and off by the given time intervals.
 Could get used to create LED flashing or other intervals.
+![cycleOnOff](img/cycleOnOff.svg)
 ```cpp
 bool cycleOnOff(uint32_t onTime, uint32_t offTime)
 
