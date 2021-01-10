@@ -1,10 +1,31 @@
 # muTimer Library #
 
+## About this Library ##
+This library provides a non-blocking timer/delay/cycle functionality for Arduinos and it consumes not very much RAM.
+
+It does not use any hardware timers, it uses the Arduino millis() and micros() functions to store the start time. It probably runs on other platforms as well, if you replace these functions with any other functions that return milliseconds and microseconds as uint32_t value.\
+
+You can find the source there: https://github.com/MichaelUray/muTimer/ \
+MIT license, check LICENSE file for more details.
+
+
+## Introduction ##
+
+There is often the requirement in a program to wait for a certain time before an action gets taken.
+
+These library functions can get used for example to do any action if an input is true for at least for a given time period.
+
+You should look on [delayOn()](#delayon) and [delayOff()](#delayoff) for normal on/off delays, as well as on [cycleOnOff()](#cycle-onoff) for periodically cycles if you quickly want to understand how the most important functions of this library work.
+
+![delayOn](img/delayOn.svg)
+![delayOff](img/delayOff.svg)
+![cycleOnOff](img/cycleOnOff.svg)
+
 ## Index ##
 - [muTimer Library](#mutimer-library)
-  * [Index](#index)
   * [About this Library](#about-this-library)
   * [Introduction](#introduction)
+  * [Index](#index)
   * [Application Examples](#application-examples)
     + [delayOnOff() / delayOn() / delayOff()](#delayonoff--delayon--delayoff)
     + [delayOnTrigger()](#delayOnTrigger)
@@ -44,27 +65,6 @@
 - [Example](#example)
 - [Forum Discussions](#forum-discussions)
 
-
-## About this Library ##
-This library provides a non-blocking timer/delay/cycle functionality for Arduinos and it consumes not very much RAM.
-
-It does not use any hardware timers, it uses the Arduino millis() and micros() functions to store the start time. It probably runs on other platforms as well, if you replace these functions with any other functions that return milliseconds and microseconds as uint32_t value.\
-
-You can find the source there: https://github.com/MichaelUray/muTimer/ \
-MIT license, check LICENSE file for more details.
-
-
-## Introduction ##
-
-There is often the requirement in a program to wait for a certain time before an action gets taken.
-
-These library functions can get used for example to do any action if an input is true for at least for a given time period.
-
-You should look on [delayOn()](#delayon) and [delayOff()](#delayoff) for normal on/off delays, as well as on [cycleOnOff()](#cycle-onoff) for periodically cycles if you quickly want to understand how the most important functions of this library work.
-
-![delayOn](img/delayOn.svg)
-![delayOff](img/delayOff.svg)
-![cycleOnOff](img/cycleOnOff.svg)
 
 ## Application Examples ##
 
