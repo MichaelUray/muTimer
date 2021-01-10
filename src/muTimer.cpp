@@ -178,7 +178,7 @@ bool muTimer::cycleOnOff(uint32_t onTime, uint32_t offTime)
 // sets the output to 0 once if the onTime elapsed and if the output of the cycle() function would go to 0
 // sets the output to 1 once if the offTime elapsed and if the output of the cycle() function would go to 1
 // sets the output to 2 if the time between cycles is running
-byte muTimer::cycleOnOffTrigger(uint32_t offTime, uint32_t onTime)
+byte muTimer::cycleOnOffTrigger(uint32_t onTime, uint32_t offTime)
 {
     if (!_output)
     { // output is off, keep it off until offTime duration is reached

@@ -70,7 +70,7 @@ public:
     // sets the output to 0 once if the onTime elapsed and if the output of delayOnOffCycle() would go to 0
     // sets the output to 1 once if the offTime elapsed and if the output of delayOnOffCycle() would go to 1
     // sets the output to 2 if the time between cycles is running
-    byte cycleOnOffTrigger(uint32_t offTime, uint32_t onTime);
+    byte cycleOnOffTrigger( uint32_t onTime, uint32_t offTime);
 
     // triggers the output periodically once by the given cycleTime
     bool cycleTrigger(uint32_t cycleTime);
