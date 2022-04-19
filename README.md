@@ -604,7 +604,7 @@ void setTimeBaseToMs(void);
 Sets the time base of the timing functions to us (microseconds).\
 All time functions use then us.
 ```cpp
-void setTimeBaseToMs(void);
+void setTimeBaseToUs(void);
 ```
 
 
