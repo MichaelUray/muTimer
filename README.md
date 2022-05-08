@@ -554,7 +554,7 @@ Creates a periodic output trigger.
 bool cycleTrigger(uint32_t cycleTime);
 
 // cycle time 4000ms
-if (myTimer1.cycle(4000))
+if (myTimer1.cycleTrigger(4000))
 {
   // gets called every 4000ms once
   myFunction1();  
