@@ -16,10 +16,12 @@ There is often the requirement in a program to wait for a certain time before an
 These library functions can get used for example to do any action if an input is true for at least for a given time period.
 
 You should look on [delayOn()](#delayon) and [delayOff()](#delayoff) for normal on/off delays, as well as on [cycleOnOff()](#cycle-onoff) and [cycleOnOffTrigger()](#cycleonofftrigger) for periodically cycles if you quickly want to understand how the most important functions of this library work.
-
 ![delayOn](img/delayOn.svg)
 ![delayOff](img/delayOff.svg)
 ![cycleOnOff](img/cycleOnOff.svg)
+
+IN = Input, OUT = Output, ET = elapsed time
+
 
 ## Index ##
 - [muTimer Library](#mutimer-library)
